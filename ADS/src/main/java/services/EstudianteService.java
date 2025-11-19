@@ -63,4 +63,21 @@ public class EstudianteService {
         estudiante.addClase(clase);
         return estudianteRepository.save(estudiante);
     }
+
+    public Estudiante retirarClase(Long estudianteId, Long claseId){
+        Estudiante estudiante = findEstudianteById(estudianteId);
+        Clase clase = claseRepository.findById(claseId);
+        if (clase == null)
+            throw new IllegalArgumentException("Clase no encontrada");
+
+        estudiante.deleteClase(clase);
+        return estudianteRepository.save(estudiante);
+    }
+
+    public List<Clase> verClases(Long estudianteId){
+        Estudiante estudiante = findEstudianteById(estudianteId);
+        List<Clase> clases = estudiante.verClases();
+        return clases;
+    }
+
 }

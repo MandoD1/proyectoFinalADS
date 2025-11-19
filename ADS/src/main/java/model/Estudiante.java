@@ -21,4 +21,12 @@ public class Estudiante {
     public void addClase(Clase clase){
         this.clases.add(clase);
     }
+
+    public void deleteClase(Clase clase){
+        this.clases.remove(clase);
+    }
+
+    public List<Clase> getClases() {
+        return clases;
+    }
 }
