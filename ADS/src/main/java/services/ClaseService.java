@@ -66,4 +66,16 @@ public class ClaseService {
         clase.addEstudiante(estudiante);
         return claseRepository.save(clase);
     }
+
+    public Clase retirarEstudianteToClass(Long estudianteId, Long claseId){
+        Estudiante estudiante = estudianteRepository.findById(estudianteId);
+        Clase clase = findClaseById(claseId);
+
+        if (estudiante == null)
+            throw new IllegalArgumentException("Estudiante no encontrado");
+
+        clase.retirarEstudiante(estudiante);
+        return claseRepository.save(clase);
+    }
+
 }

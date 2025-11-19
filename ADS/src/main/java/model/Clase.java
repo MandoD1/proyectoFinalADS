@@ -15,6 +15,7 @@ public class Clase {
     private Date horario;
     private String salon;
     private int cupoMaximo;
+    private int cupoActual;
     private String semestre;
     private Asigatura asigatura;
 
@@ -22,6 +23,21 @@ public class Clase {
 
     public void addEstudiante(Estudiante estudiante){
         this.estudiantes.add(estudiante);
+    }
+
+    public void retirarEstudiante(Estudiante estudiante){
+        this.estudiantes.remove(estudiante);
+    }
+
+    public boolean cupo(){
+        if(cupoMaximo > cupoActual){
+            return true;
+        }
+        return false;
+    }
+
+    public void aumentarCupo(){
+        this.cupoActual++;
     }
 
 }

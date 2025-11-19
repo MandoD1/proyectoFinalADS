@@ -51,4 +51,17 @@ public class EstudianteController {
             @PathVariable Long cId){
         return estudianteService.assignClassToEstudiante(eId, cId);
     }
+
+    @PostMapping("/{eId}/retirarclases/{cId}")
+    public Estudiante retirarClase(
+            @PathVariable Long eId,
+            @PathVariable Long cId){
+        return estudianteService.retirarClaseOfEstudiante(eId, cId);
+    }
+
+    @PostMapping("/{eId}/verclases/{cId}")
+    public Estudiante verClases(
+            @PathVariable Long eId){
+        return estudianteService.SeeClasesOfEstudiante(eId);
+    }
 }

@@ -60,11 +60,16 @@ public class EstudianteService {
         if (clase == null)
             throw new IllegalArgumentException("Clase no encontrada");
 
+        if(!verificarCupo(claseId)){
+           throw new IllegalArgumentException("Clase llena");
+        }
+
+        clase.aumentarCupo();
         estudiante.addClase(clase);
         return estudianteRepository.save(estudiante);
     }
 
-    public Estudiante retirarClase(Long estudianteId, Long claseId){
+    public Estudiante retirarClaseOfEstudiante(Long estudianteId, Long claseId){
         Estudiante estudiante = findEstudianteById(estudianteId);
         Clase clase = claseRepository.findById(claseId);
         if (clase == null)
@@ -74,10 +79,16 @@ public class EstudianteService {
         return estudianteRepository.save(estudiante);
     }
 
-    public List<Clase> verClases(Long estudianteId){
+    public List<Clase> SeeClasesOfEstudiante(Long estudianteId){
         Estudiante estudiante = findEstudianteById(estudianteId);
         List<Clase> clases = estudiante.verClases();
         return clases;
+    }
+
+    public boolean verificarCupo(Long claseId){
+        Clase clase = findClaseById(claseId)
+        boolean aux = clase.cupo();
+        return aux;
     }
 
 }
