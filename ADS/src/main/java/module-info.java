@@ -16,6 +16,9 @@ module com.example.ads {
     requires spring.data.jpa;
     requires spring.context;
     requires spring.beans;
+    requires spring.web;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
 
     opens com.example.ads to javafx.fxml;
     exports com.example.ads;
