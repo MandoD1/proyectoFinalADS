@@ -46,6 +46,7 @@ public class ClaseService {
         original.setCupoMaximo(clase.getCupoMaximo());
         original.setSemestre(clase.getSemestre());
         original.setEstudiantes(clase.getEstudiantes());
+        original.setAsignatura(clase.getAsignatura());
 
         return claseRepository.save(original);
     }

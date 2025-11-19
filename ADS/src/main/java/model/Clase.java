@@ -16,10 +16,12 @@ public class Clase {
     private String salon;
     private int cupoMaximo;
     private String semestre;
+    private Asigatura asigatura;
 
     private List<Estudiante> estudiantes = new ArrayList<>();
 
     public void addEstudiante(Estudiante estudiante){
         this.estudiantes.add(estudiante);
     }
+
 }
