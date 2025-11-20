@@ -2,7 +2,6 @@ package repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Profesor;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -10,64 +9,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProfesorRepository {
+public abstract class ProfesorRepository<T> {
 
-    private final ObjectMapper mapper = new ObjectMapper();
-    private final File file = new File("src/main/resources/data/profesor.json");
+    protected final ObjectMapper mapper = new ObjectMapper();
+    protected final File file;
+    protected List<T> data = new ArrayList<>();
 
-    private List<Profesor> profesores = new ArrayList<>();
-
-    public ProfesorRepository() {
-        loadData();
+    public ProfesorRepository(String filePath, TypeReference<List<T>> type) {
+        this.file = new File(filePath);
+        loadData(type);
     }
 
-    private void loadData() {
+    private void loadData(TypeReference<List<T>> type) {
         try {
             if (file.exists()) {
-                profesores = mapper.readValue(file, new TypeReference<List<Profesor>>() {});
+                data = mapper.readValue(file, type);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error leyendo archivo JSON", e);
+            throw new RuntimeException("Error leyendo JSON", e);
         }
     }
 
-    private void saveData() {
+    protected void saveData() {
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(file, profesores);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, data);
         } catch (Exception e) {
-            throw new RuntimeException("Error guardando archivo JSON", e);
+            throw new RuntimeException("Error guardando JSON", e);
         }
     }
 
-    public List<Profesor> findAll() {
-        return profesores;
-    }
+    public List<T> findAll() { return data; }
 
-    public Profesor findById(long id) {
-        return profesores.stream()
-                .filter(e -> e.getCodigo() == id)
+    public T findById(long id) {
+        return data.stream()
+                .filter(e -> ((HasId) e).getCodigo() == id)
                 .findFirst()
                 .orElse(null);
     }
 
-    public Profesor save(Profesor e) {
-        if (e.getCodigo() == 0) {
-            e.setCodigo(generateId());
-        }
-        profesores.removeIf(x -> x.getCodigo() == e.getCodigo());
-        profesores.add(e);
+    public T save(T e) {
+        HasId obj = (HasId)e;
+        if (obj.getCodigo() == 0) obj.setCodigo(generateId());
+        data.removeIf(x -> ((HasId)x).getCodigo() == obj.getCodigo());
+        data.add(e);
         saveData();
         return e;
     }
 
     public void delete(long id) {
-        profesores.removeIf(e -> e.getCodigo() == id);
+        data.removeIf(e -> ((HasId)e).getCodigo() == id);
         saveData();
     }
 
     private long generateId() {
-        return profesores.stream()
-                .mapToLong(Profesor::getCodigo)
+        return data.stream()
+                .mapToLong(e -> ((HasId)e).getCodigo())
                 .max()
                 .orElse(0) + 1;
     }
