@@ -21,4 +21,7 @@ public class Profesor {
         this.clases.add(clase);
     }
 
+    public void removeClases(Clase clase){
+        this.clases.remove(clase);
+    }
 }
