@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Repository
 public class AsignaturaRepository {
 
@@ -24,7 +25,7 @@ public class AsignaturaRepository {
     private void loadData() {
         try {
             if (file.exists()) {
-                clases = mapper.readValue(file, new TypeReference<List<Asignatura>>() {});
+                asignaturas = mapper.readValue(file, new TypeReference<List<Asignatura>>() {});
             }
         } catch (Exception e) {
             throw new RuntimeException("Error cargando asignaturas.json", e);
@@ -45,30 +46,30 @@ public class AsignaturaRepository {
 
     public Asignatura findById(Long id) {
         return asignaturas.stream()
-                .filter(c -> c.getId().equals(id))
+                .filter(c -> c.getCodigo().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     public Asignatura save(Asignatura asignatura) {
-        if (asignatura.getId() == null) {
-            asignatura.setId(generateId());
+        if (asignatura.getCodigo() == null) {
+            asignatura.setCodigo(generateId());
         }
 
-        asignaturas.removeIf(c -> c.getId().equals(asignatura.getId()));
+        asignaturas.removeIf(c -> c.getCodigo().equals(asignatura.getCodigo()));
         asignaturas.add(asignatura);
         saveData();
         return asignatura;
     }
 
     public void delete(Long id) {
-        clases.removeIf(c -> c.getId().equals(id));
+        asignaturas.removeIf(c -> c.getCodigo().equals(id));
         saveData();
     }
 
     private Long generateId() {
         return asignaturas.stream()
-                    .mapToLong(Asignatura::getId)
+                    .mapToLong(Asignatura::getCodigo)
                 .max()
                 .orElse(0) + 1;
     }

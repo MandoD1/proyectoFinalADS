@@ -81,14 +81,12 @@ public class EstudianteService {
 
     public List<Clase> SeeClasesOfEstudiante(Long estudianteId){
         Estudiante estudiante = findEstudianteById(estudianteId);
-        List<Clase> clases = estudiante.verClases();
-        return clases;
+        return estudiante.getClases();
     }
 
     public boolean verificarCupo(Long claseId){
-        Clase clase = findClaseById(claseId)
-        boolean aux = clase.cupo();
-        return aux;
+        Clase clase = claseRepository.findById(claseId);
+        return clase.cupo();
     }
 
 }

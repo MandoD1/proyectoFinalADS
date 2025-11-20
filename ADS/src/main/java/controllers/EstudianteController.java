@@ -1,5 +1,6 @@
 package controllers;
 
+import model.Clase;
 import model.Estudiante;
 import services.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +60,8 @@ public class EstudianteController {
         return estudianteService.retirarClaseOfEstudiante(eId, cId);
     }
 
-    @PostMapping("/{eId}/verclases/{cId}")
-    public Estudiante verClases(
+    @PostMapping("/{eId}/verclases")
+    public List<Clase> verClases(
             @PathVariable Long eId){
         return estudianteService.SeeClasesOfEstudiante(eId);
     }

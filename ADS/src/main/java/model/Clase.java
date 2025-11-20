@@ -17,7 +17,7 @@ public class Clase {
     private int cupoMaximo;
     private int cupoActual;
     private String semestre;
-    private Asigatura asigatura;
+    private Asignatura asignatura;
 
     private List<Estudiante> estudiantes = new ArrayList<>();
 

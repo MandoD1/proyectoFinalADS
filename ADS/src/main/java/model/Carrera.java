@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -18,5 +17,11 @@ public class Carrera {
 
     public void addEstudiante(Estudiante estudiante){
         this.estudiantes.add(estudiante);
+    }
+
+    private List<Asignatura> AsignaturasPensum = new ArrayList<>();
+
+    public void addAsignaturaPensum(Asignatura asignatura){
+        this.AsignaturasPensum.add(asignatura);
     }
 }
