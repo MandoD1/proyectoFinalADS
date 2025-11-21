@@ -14,7 +14,8 @@ public class Asignatura {
     private String nombre;
     private int creditos;
     private boolean requisitoingles;
-
+    private String estado;    //#enum aprobada, retirada, perdida, no vista
+    private int calificacion;
 
     private List<Asignatura> prerequisitos = new ArrayList<>();
 

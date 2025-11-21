@@ -1,9 +1,7 @@
 package controllers;
 
 import model.Asignatura;
-import model.Clase;
 import services.AsignaturaService;
-import services.ClaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -68,6 +66,14 @@ public class AsignaturaController {
         return asignaturaService.assingClase(aId, claseId);
     }
 
+    @PostMapping("/{aId}/Asignatura/{calificacion}/{estado}")
+    public Asignatura assingAsignaturaNotaYEstado(
+            @PathVariable Long aId,
+            @PathVariable int calificacion,
+            @PathVariable String estado){
+        return asignaturaService.assingAsignaturaNotaYEstado(aId, estado, calificacion);
+    }
+
     @PostMapping("/{aId}/removeprerequisito/{pId}")
     public Asignatura removePrerequisito(
             @PathVariable Long aId,
@@ -98,6 +104,7 @@ public class AsignaturaController {
     public List<Asignatura> getCorequisitos(@PathVariable Long cId){
         return asignaturaService.seeCorequisitos(cId);
     }
+
 
 }
 
