@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Carrera {
-    private String codigo;
+    private Long codigo;
     private String nombre;
 
     private List<Estudiante> estudiantes = new ArrayList<>();
@@ -24,4 +24,5 @@ public class Carrera {
     public void addAsignaturaPensum(Asignatura asignatura){
         this.AsignaturasPensum.add(asignatura);
     }
+
 }
