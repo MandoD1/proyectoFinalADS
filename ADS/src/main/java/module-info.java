@@ -20,6 +20,4 @@ module com.example.ads {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
-    opens com.example.ads to javafx.fxml;
-    exports com.example.ads;
 }

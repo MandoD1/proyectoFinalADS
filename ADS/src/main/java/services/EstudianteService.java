@@ -1,9 +1,11 @@
 package services;
 
+import model.Carrera;
 import model.Clase;
 import model.Estudiante;
 import repository.EstudianteRepository;
 import repository.ClaseRepository;
+import repository.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,13 @@ public class EstudianteService {
 
     private final EstudianteRepository estudianteRepository;
     private final ClaseRepository claseRepository;
+    private final CarreraRepository carreraRepository;
 
     @Autowired
     public EstudianteService(EstudianteRepository estudianteRepository, ClaseRepository claseRepository) {
         this.estudianteRepository = estudianteRepository;
         this.claseRepository = claseRepository;
+        this.carreraRepository = new CarreraRepository();
     }
 
     public Estudiante createEstudiante(Estudiante estudiante){
@@ -41,7 +45,7 @@ public class EstudianteService {
 
         original.setNombre(estudiante.getNombre());
         original.setEmail(estudiante.getEmail());
-        original.setCarrera(estudiante.getCarrera());
+        original.setCarreras(estudiante.getCarreras());
         original.setExamenIngles(estudiante.isExamenIngles());
         original.setClases(estudiante.getClases());
 
@@ -77,6 +81,13 @@ public class EstudianteService {
 
         estudiante.deleteClase(clase);
         return estudianteRepository.save(estudiante);
+    }
+
+    public Estudiante retirarCarrearOfEstudiante(Long estudianteId, Long carreId){
+        Estudiante estudiante = findEstudianteById(estudianteId);
+        Carrera carrera = carreraRepository.findById(carreId);
+
+        return estudianteRepository.findById(carreId);
     }
 
     public List<Clase> SeeClasesOfEstudiante(Long estudianteId){

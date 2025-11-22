@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Carrera {
-    private String codigo;
+    private Long codigo;
     private String nombre;
 
     private List<Estudiante> estudiantes = new ArrayList<>();
@@ -49,11 +49,11 @@ public class Carrera {
         this.nombre = nombre;
     }
 
-    public String getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 }

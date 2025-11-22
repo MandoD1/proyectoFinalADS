@@ -16,7 +16,10 @@ public class Estudiante {
     private String carrera;
     private boolean examenIngles;
 
+    private List<Carrera> carreras= new ArrayList<>();
     private List<Clase> clases = new ArrayList<>();
+
+
 
     public void addClase(Clase clase){
         this.clases.add(clase);
@@ -24,6 +27,12 @@ public class Estudiante {
 
     public void deleteClase(Clase clase){
         this.clases.remove(clase);
+    }
+
+    public void addCarrera(Carrera carrera){this.carreras.add(carrera);}
+
+    public void deleteCarrera(Carrera carrera){
+        this.carreras.remove(carrera);
     }
 
     public List<Clase> getClases() {
@@ -73,4 +82,14 @@ public class Estudiante {
     public void setClases(List<Clase> clases) {
         this.clases = clases;
     }
+
+    public List<Carrera> getCarreras() {
+        return carreras;
+    }
+
+    public void setCarreras(List<Carrera> carreras) {
+        this.carreras = carreras;
+    }
 }
+
+

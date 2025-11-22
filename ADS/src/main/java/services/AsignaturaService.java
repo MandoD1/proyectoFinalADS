@@ -97,6 +97,27 @@ public class AsignaturaService {
         return asignaturaRepository.save(asignatura);
     }
 
+    public Asignatura assingAsignaturaNotaYEstado(Long asignaturaid, String estado, int calificacion){
+        Asignatura asignatura = findAsignaturaById(asignaturaid);
+
+        if (asignatura == null)
+            throw new IllegalArgumentException("asignatura no encontrada");
+
+        if(estado.equals("aprobada")){
+            asignatura.setCalificacion(calificacion);
+        }
+
+        if(estado.equals("reprobada")){
+            asignatura.setCalificacion(calificacion);
+        }
+
+        if(estado.equals("retirada")){
+            deleteAsignatura(asignaturaid);
+        }
+
+        return  asignaturaRepository.save(asignatura);
+    }
+
     public Asignatura eliminarPrerequisito(Long asignaturaid, Long prerequisitoid){
         Asignatura asignatura = findAsignaturaById(asignaturaid);
         Asignatura prerequisito = findAsignaturaById(prerequisitoid);

@@ -14,6 +14,8 @@ public class Asignatura {
     private String nombre;
     private int creditos;
     private boolean requisitoingles;
+    private String estado;    //#enum aprobada, retirada, perdida, no vista
+    private int calificacion;
 
     private List<Asignatura> prerequisitos = new ArrayList<>();
 
@@ -97,5 +99,21 @@ public class Asignatura {
 
     public void setClases(List<Clase> clases) {
         this.clases = clases;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
     }
 }
