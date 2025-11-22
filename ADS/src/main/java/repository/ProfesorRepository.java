@@ -40,7 +40,7 @@ public abstract class ProfesorRepository<T> {
 
     public List<T> findAll() { return data; }
 
-    public T findById(long id) {
+    public T findById(Long id) {
         return data.stream()
                 .filter(e -> ((HasId) e).getCodigo() == id)
                 .findFirst()
@@ -56,7 +56,7 @@ public abstract class ProfesorRepository<T> {
         return e;
     }
 
-    public void delete(long id) {
+    public void delete(Long id) {
         data.removeIf(e -> ((HasId)e).getCodigo() == id);
         saveData();
     }

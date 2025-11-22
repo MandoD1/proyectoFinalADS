@@ -53,7 +53,7 @@ public class ClaseService {
 
     public void deleteClass(Long id){
         findClaseById(id);
-        estudianteRepository.delete(id);
+        claseRepository.delete(id);
     }
 
     public Clase assignEstudianteToClass(Long estudianteId, Long claseId){

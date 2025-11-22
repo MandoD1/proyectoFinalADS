@@ -11,8 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Clase {
     private Long id;
-    private String profesor;
-    private Date horario;
+    private Profesor profesor;
+    private List<Date> horario;
     private String salon;
     private int cupoMaximo;
     private int cupoActual;

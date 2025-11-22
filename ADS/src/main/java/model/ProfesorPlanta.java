@@ -5,6 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class DirectorDepartamento extends Profesor {
-    private Departamento departamento;
+public class ProfesorPlanta extends Profesor {
+
 }
