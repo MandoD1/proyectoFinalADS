@@ -29,4 +29,48 @@ public class Estudiante {
     public List<Clase> getClases() {
         return clases;
     }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public boolean isExamenIngles() {
+        return examenIngles;
+    }
+
+    public void setExamenIngles(boolean examenIngles) {
+        this.examenIngles = examenIngles;
+    }
+
+    public void setClases(List<Clase> clases) {
+        this.clases = clases;
+    }
 }

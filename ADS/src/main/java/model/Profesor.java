@@ -24,4 +24,52 @@ public class Profesor {
     public void removeClases(Clase clase){
         this.clases.remove(clase);
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    public double getPago() {
+        return pago;
+    }
+
+    public void setPago(double pago) {
+        this.pago = pago;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public List<Clase> getClases() {
+        return clases;
+    }
+
+    public void setClases(List<Clase> clases) {
+        this.clases = clases;
+    }
 }

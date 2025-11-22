@@ -47,7 +47,7 @@ public class DirectorDepartamentoController extends ProfesorController<DirectorD
 
         profesores.addAll(profesoresCatedra);
         profesores.addAll(profesoresPlanta);
-        
+
         return profesores;
     }
 }

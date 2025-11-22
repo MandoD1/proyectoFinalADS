@@ -38,7 +38,6 @@ public class AsignaturaService {
 
     public Asignatura updateAsignatura(Long id, Asignatura asignatura){
         Asignatura original = findAsignaturaById(id);
-
         original.setDepartamento(asignatura.getDepartamento());
         original.setCodigo(asignatura.getCodigo());
         original.setNombre(asignatura.getNombre());

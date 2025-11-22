@@ -15,7 +15,6 @@ public class Asignatura {
     private int creditos;
     private boolean requisitoingles;
 
-
     private List<Asignatura> prerequisitos = new ArrayList<>();
 
     public void addPrerequisitos(Asignatura asignatura){
@@ -44,6 +43,59 @@ public class Asignatura {
 
     public List<Asignatura> getCorequisitos(){ return corequisitos; }
 
+    public Departamento getDepartamento() {
+        return departamento;
+    }
 
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
 
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
+    public boolean isRequisitoingles() {
+        return requisitoingles;
+    }
+
+    public void setRequisitoingles(boolean requisitoingles) {
+        this.requisitoingles = requisitoingles;
+    }
+
+    public void setPrerequisitos(List<Asignatura> prerequisitos) {
+        this.prerequisitos = prerequisitos;
+    }
+
+    public void setCorequisitos(List<Asignatura> corequisitos) {
+        this.corequisitos = corequisitos;
+    }
+
+    public List<Clase> getClases() {
+        return clases;
+    }
+
+    public void setClases(List<Clase> clases) {
+        this.clases = clases;
+    }
 }

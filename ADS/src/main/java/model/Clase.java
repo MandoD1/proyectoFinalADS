@@ -40,4 +40,75 @@ public class Clase {
         this.cupoActual++;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public List<Date> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(List<Date> horario) {
+        this.horario = horario;
+    }
+
+    public String getSalon() {
+        return salon;
+    }
+
+    public void setSalon(String salon) {
+        this.salon = salon;
+    }
+
+    public int getCupoMaximo() {
+        return cupoMaximo;
+    }
+
+    public void setCupoMaximo(int cupoMaximo) {
+        this.cupoMaximo = cupoMaximo;
+    }
+
+    public int getCupoActual() {
+        return cupoActual;
+    }
+
+    public void setCupoActual(int cupoActual) {
+        this.cupoActual = cupoActual;
+    }
+
+    public String getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    public Asignatura getAsignatura() {
+        return asignatura;
+    }
+
+    public void setAsignatura(Asignatura asignatura) {
+        this.asignatura = asignatura;
+    }
+
+    public List<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(List<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
 }

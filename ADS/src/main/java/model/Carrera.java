@@ -24,4 +24,36 @@ public class Carrera {
     public void addAsignaturaPensum(Asignatura asignatura){
         this.AsignaturasPensum.add(asignatura);
     }
+
+    public List<Asignatura> getAsignaturasPensum() {
+        return AsignaturasPensum;
+    }
+
+    public void setAsignaturasPensum(List<Asignatura> asignaturasPensum) {
+        AsignaturasPensum = asignaturasPensum;
+    }
+
+    public List<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(List<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }

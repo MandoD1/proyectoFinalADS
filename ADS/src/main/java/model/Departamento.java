@@ -27,4 +27,36 @@ public class Departamento {
     }
 
     public void removeProfesores(Profesor profesor){ this.profesores.remove(profesor); }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
+    }
+
+    public List<Profesor> getProfesores() {
+        return profesores;
+    }
+
+    public void setProfesores(List<Profesor> profesores) {
+        this.profesores = profesores;
+    }
 }
