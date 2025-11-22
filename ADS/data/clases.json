@@ -1,0 +1,11 @@
+[ {
+  "id" : 1,
+  "profesor" : null,
+  "horario" : null,
+  "salon" : null,
+  "cupoMaximo" : 0,
+  "cupoActual" : 0,
+  "semestre" : null,
+  "asignatura" : null,
+  "estudiantes" : [ ]
+} ]
