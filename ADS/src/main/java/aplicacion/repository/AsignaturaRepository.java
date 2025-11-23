@@ -46,30 +46,30 @@ public class AsignaturaRepository {
 
     public Asignatura findById(Long id) {
         return asignaturas.stream()
-                .filter(c -> c.getCodigo().equals(id))
+                .filter(c -> c.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     public Asignatura save(Asignatura asignatura) {
-        if (asignatura.getCodigo() == null) {
-            asignatura.setCodigo(generateId());
+        if (asignatura.getId() == null) {
+            asignatura.setId(generateId());
         }
 
-        asignaturas.removeIf(c -> c.getCodigo().equals(asignatura.getCodigo()));
+        asignaturas.removeIf(c -> c.getId().equals(asignatura.getId()));
         asignaturas.add(asignatura);
         saveData();
         return asignatura;
     }
 
     public void delete(Long id) {
-        asignaturas.removeIf(c -> c.getCodigo().equals(id));
+        asignaturas.removeIf(c -> c.getId().equals(id));
         saveData();
     }
 
     private Long generateId() {
         return asignaturas.stream()
-                    .mapToLong(Asignatura::getCodigo)
+                    .mapToLong(Asignatura::getId)
                 .max()
                 .orElse(0) + 1;
     }

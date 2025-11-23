@@ -10,10 +10,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Carrera {
-    private Long codigo;
+    private Long id;
     private String nombre;
 
     private List<Estudiante> estudiantes = new ArrayList<>();
+    private List<Profesor> profesores = new ArrayList<>();
 
     public void addEstudiante(Estudiante estudiante){
         this.estudiantes.add(estudiante);
@@ -41,6 +42,14 @@ public class Carrera {
         this.estudiantes = estudiantes;
     }
 
+    public List<Profesor> getProfesores() {
+        return profesores;
+    }
+
+    public void setProfesores(List<Profesor> profesores) {
+        this.profesores = profesores;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -50,10 +59,10 @@ public class Carrera {
     }
 
     public Long getCodigo() {
-        return codigo;
+        return id;
     }
 
     public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+        this.id = codigo;
     }
 }

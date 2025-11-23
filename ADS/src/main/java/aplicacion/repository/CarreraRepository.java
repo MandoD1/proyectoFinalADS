@@ -13,7 +13,7 @@ import java.util.List;
 public class CarreraRepository {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private final File file = new File("ADS/data/clases.json");
+    private final File file = new File("ADS/data/carrera.json");
 
     private List<Carrera> carreras = new ArrayList<>();
 

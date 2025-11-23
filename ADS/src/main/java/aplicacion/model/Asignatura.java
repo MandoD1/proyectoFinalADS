@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Asignatura {
     private Departamento departamento;
-    private Long codigo;
+    private Long id;
     private String nombre;
     private int creditos;
     private boolean requisitoingles;
@@ -53,12 +53,12 @@ public class Asignatura {
         this.departamento = departamento;
     }
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setId(Long codigo) {
+        this.id = codigo;
     }
 
     public String getNombre() {
