@@ -111,6 +111,22 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
         return departamentoRepository.save(departamento);
     }
 
+    public void crearClase(Long id, Long idProfesor, List<Date> horario, int horas, String salon, int cupoMaximo, String semestre, Long idAsignatura) {
+        Profesor profesor = findById(idProfesor);
+        Asignatura asgnatura = asignaturaRepository.findById(idAsignatura);
+        Clase clase = new Clase();
+        clase.setId(id);
+        clase.setProfesor(profesor);
+        clase.setHorario(horario);
+        clase.setHoras(horas);
+        clase.setSalon(salon);
+        clase.setCupoMaximo(cupoMaximo);
+        clase.setSemestre(semestre);
+        clase.setCupoActual(0);
+        clase.setAsignatura(asgnatura);
+        claseService.createClase(clase);
+
+    }
     public void modificarClase(int horas, Long cid, Long nuevoId, Long profesorId, List<Date> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Estudiante> estudiantes ) {
         Clase clase = new Clase();
         Clase claseOriginal = claseService.findClaseById(cid);
