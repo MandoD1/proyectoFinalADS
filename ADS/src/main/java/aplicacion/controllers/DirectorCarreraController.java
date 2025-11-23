@@ -23,12 +23,6 @@ public class DirectorCarreraController extends ProfesorController<DirectorCarrer
         this.claseService = claseService;
     }
 
-    @GetMapping("/modificarcarga")
-    public void modificarCarga(@RequestParam Long pId, @RequestParam Long cId,  @RequestParam boolean accion ){
-        Clase clase = claseService.findClaseById(cId);
-        directorCarreraService.modificarCargaProfesor(pId, clase, accion);
-    }
-
     @GetMapping("/verprofesor")
     public Profesor getProfesor(@RequestParam Long pId){
         return directorCarreraService.consultarProfesor(pId);

@@ -54,17 +54,6 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
         return findById(id);
     }
 
-    public void modificarCargaProfesor(Long id, Clase clase, Boolean bandera) {
-        Profesor profesor = consultarProfesor(id);
-        if (bandera) {
-            profesor.addClases(clase);
-        } else if (!bandera) {
-            profesor.removeClases(clase);
-        } else {
-            throw new RuntimeException("No se puede modificar el profesor");
-        }
-    }
-
     public boolean esMayorA3MesesDate(Date fechaDada, Date fechaActual) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(fechaDada);
