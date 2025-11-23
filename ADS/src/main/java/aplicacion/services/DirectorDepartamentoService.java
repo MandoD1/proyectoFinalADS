@@ -26,9 +26,10 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
     private final ProfesorCatedraRepository profesorCatedraRepository;
     private final SemestreRepository semestreRepository;
     private final ProfesorCatedraService profesorCatedraService;
+    private final MultiFileProfesorRepository<Profesor>  multiFileProfesorRepository;
 
     @Autowired
-    public DirectorDepartamentoService(DirectorDepartamentoRepository directorDepartamentoRepository, DepartamentoRepository departamentoRepository, AsignaturaRepository asignaturaRepository, ClaseService claseService, AsignaturaService asignaturaService, UsuarioRepository usuarioRepository, ProfesorPlantaRepository profesorPlantaRepository, ProfesorCatedraRepository profesorCatedraRepository, SemestreRepository semestreRepository, ProfesorCatedraService profesorCatedraService) {
+    public DirectorDepartamentoService(DirectorDepartamentoRepository directorDepartamentoRepository, DepartamentoRepository departamentoRepository, AsignaturaRepository asignaturaRepository, ClaseService claseService, AsignaturaService asignaturaService, UsuarioRepository usuarioRepository, ProfesorPlantaRepository profesorPlantaRepository, ProfesorCatedraRepository profesorCatedraRepository, SemestreRepository semestreRepository, ProfesorCatedraService profesorCatedraService, MultiFileProfesorRepository<Profesor> multiFileProfesorRepository) {
         super(directorDepartamentoRepository);
         this.departamentoRepository = departamentoRepository;
         this.asignaturaRepository = asignaturaRepository;
@@ -39,6 +40,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         this.profesorCatedraRepository = profesorCatedraRepository;
         this.semestreRepository = semestreRepository;
         this.profesorCatedraService = profesorCatedraService;
+        this.multiFileProfesorRepository = multiFileProfesorRepository;
     }
 
     @Override
@@ -57,7 +59,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
     }
 
     public int verHorasProfesor(Long pId){
-        Profesor profesor = findById(pId);
+        Profesor profesor = multiFileProfesorRepository.findById(pId);
         return profesor.getTotalHoras();
     }
 
@@ -154,7 +156,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
     }
 
     public void generarInformeProfesor(Long pId){
-        Profesor profesor = findById(pId);
+        Profesor profesor = multiFileProfesorRepository.findById(pId);;
         if(profesor == null)
             throw new RuntimeException("Profesor no encontrado");
 

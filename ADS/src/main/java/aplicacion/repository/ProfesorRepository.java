@@ -59,7 +59,7 @@ public abstract class ProfesorRepository<T> {
         saveData();
     }
 
-    private long generateId() {
+    public long generateId() {
         return data.stream()
                 .mapToLong(e -> ((HasId)e).getCodigo())
                 .max()
