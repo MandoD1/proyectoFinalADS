@@ -37,7 +37,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         original.setEmail(updated.getEmail());
         original.setDepartamento(updated.getDepartamento());
         original.setPago(updated.getPago());
-        original.setCodigo(updated.getCodigo());
+        original.setId(updated.getId());
         original.setClases(updated.getClases());
         original.setDepartamento(updated.getDepartamento());
     }
@@ -56,10 +56,10 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         }
         
         if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getCodigo();
+            Long codigo1 = usuario.getId();
             DirectorDepartamento directorDepartamento = findById(codigo1);
             if(directorDepartamento != null){
-                Departamento departamento1 = departamentoRepository.findById(directorDepartamento.getDepartamento().getCodigo());
+                Departamento departamento1 = departamentoRepository.findById(directorDepartamento.getDepartamento().getId());
                 if(departamento1 == departamento){
                     asignatura.setNombre(nombre);
                     asignatura.setDepartamento(departamento);
@@ -88,14 +88,14 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         Usuario usuario = usuarioRepository.loadUsuario();
 
         if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getCodigo();
+            Long codigo1 = usuario.getId();
             DirectorDepartamento directorDepartamento = findById(codigo1);
             if(directorDepartamento != null){
                 List<Asignatura> asignaturasDeDepartamentoDeUsuario = directorDepartamento.getDepartamento().getAsignaturas();
                 for (Asignatura asignatura1 : asignaturasDeDepartamentoDeUsuario){
                     List<Clase> clasesAsignaturaDeDepartamentoDeUsuario = asignatura1.getClases();
                     for (Clase clase1 : clasesAsignaturaDeDepartamentoDeUsuario){
-                        Long idClase1 = clase1.getCodigo();
+                        Long idClase1 = clase1.getId();
                         if(idClase1 == cid){
                             laClaseExiste = true;
                         }
@@ -105,7 +105,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         } else { throw new RuntimeException("No eres director de departamento"); }
 
         if(laClaseExiste){
-            clase.setCodigo(nuevoId);
+            clase.setId(nuevoId);
             clase.setAsignatura(asignatura);
             clase.setProfesor(profesor);
             clase.setSalon(salon);
@@ -129,10 +129,10 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         }
 
         if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getCodigo();
+            Long codigo1 = usuario.getId();
             DirectorDepartamento directorDepartamento = findById(codigo1);
             if(directorDepartamento != null){
-                Departamento departamento1 = departamentoRepository.findById(directorDepartamento.getDepartamento().getCodigo());
+                Departamento departamento1 = departamentoRepository.findById(directorDepartamento.getDepartamento().getId());
                 if(departamento1 == departamento){
                     departamento.removeAsignaturas(asignatura);
                 } else {throw new RuntimeException("no eres directror de departamento del departamento al que quieres agregar una asignatura");}
@@ -149,14 +149,14 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         Usuario usuario = usuarioRepository.loadUsuario();
 
         if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getCodigo();
+            Long codigo1 = usuario.getId();
             DirectorDepartamento directorDepartamento = findById(codigo1);
             if(directorDepartamento != null){
                 List<Asignatura> asignaturasDeDepartamentoDeUsuario = directorDepartamento.getDepartamento().getAsignaturas();
                 for (Asignatura asignatura1 : asignaturasDeDepartamentoDeUsuario){
                     List<Clase> clasesAsignaturaDeDepartamentoDeUsuario = asignatura1.getClases();
                     for (Clase clase1 : clasesAsignaturaDeDepartamentoDeUsuario){
-                        Long idClase1 = clase1.getCodigo();
+                        Long idClase1 = clase1.getId();
                         if(idClase1 == cid){
                             laClaseExiste = true;
                         }

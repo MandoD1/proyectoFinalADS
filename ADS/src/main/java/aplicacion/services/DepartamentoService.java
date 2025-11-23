@@ -2,7 +2,6 @@ package aplicacion.services;
 
 import aplicacion.model.*;
 import aplicacion.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class DepartamentoService {
     public Departamento updateDepartamento(Long id, Departamento departamento){
         Departamento original = findDepartamentoById(id);
 
-        original.setCodigo(departamento.getCodigo());
+        original.setId(departamento.getId());
         original.setAsignaturas(departamento.getAsignaturas());
         original.setNombre(departamento.getNombre());
         original.setProfesores(departamento.getProfesores());

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Clase {
-    private Long codigo;
+    private Long id;
     private Profesor profesor;
     private List<Date> horario;
     private String salon;
@@ -40,12 +40,12 @@ public class Clase {
         this.cupoActual++;
     }
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Profesor getProfesor() {

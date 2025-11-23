@@ -41,10 +41,10 @@ public class UsuarioRepository {
     }
 
     public Usuario save(Usuario e) {
-        if (e.getCodigo() == 0) {
-            e.setCodigo(generateId());
+        if (e.getId() == 0) {
+            e.setId(generateId());
         }
-        usuarios.removeIf(x -> x.getCodigo() == e.getCodigo());
+        usuarios.removeIf(x -> x.getId() == e.getId());
         usuarios.add(e);
         saveData();
         return e;
@@ -87,7 +87,7 @@ public class UsuarioRepository {
 
     private Long generateId() {
         return usuarios.stream()
-                .mapToLong(Usuario::getCodigo)
+                .mapToLong(Usuario::getId)
                 .max()
                 .orElse(0) + 1;
     }

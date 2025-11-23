@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Departamento {
     private String nombre;
-    private Long codigo;
+    private Long id;
 
     private List<Asignatura> asignaturas = new ArrayList<>();
 
@@ -36,12 +36,12 @@ public class Departamento {
         this.nombre = nombre;
     }
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Asignatura> getAsignaturas() {

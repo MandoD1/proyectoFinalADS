@@ -13,7 +13,7 @@ public class Profesor {
     private String email;
     private Departamento departamento;
     private double pago;
-    private Long codigo;
+    private Long id;
 
     private List<Clase> clases = new ArrayList<>();
 
@@ -57,12 +57,12 @@ public class Profesor {
         this.pago = pago;
     }
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Clase> getClases() {

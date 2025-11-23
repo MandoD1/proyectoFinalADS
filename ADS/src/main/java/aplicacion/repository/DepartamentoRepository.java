@@ -45,30 +45,30 @@ public class DepartamentoRepository {
 
     public Departamento findById(Long id) {
         return departamentos.stream()
-                .filter(c -> c.getCodigo().equals(id))
+                .filter(c -> c.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     public Departamento save(Departamento departamento) {
-        if (departamento.getCodigo() == null) {
-            departamento.setCodigo(generateId());
+        if (departamento.getId() == null) {
+            departamento.setId(generateId());
         }
 
-        departamentos.removeIf(c -> c.getCodigo().equals(departamento.getCodigo()));
+        departamentos.removeIf(c -> c.getId().equals(departamento.getId()));
         departamentos.add(departamento);
         saveData();
         return departamento;
     }
 
     public void delete(Long id) {
-        departamentos.removeIf(c -> c.getCodigo().equals(id));
+        departamentos.removeIf(c -> c.getId().equals(id));
         saveData();
     }
 
     private Long generateId() {
         return departamentos.stream()
-                .mapToLong(Departamento::getCodigo)
+                .mapToLong(Departamento::getId)
                 .max()
                 .orElse(0) + 1;
     }

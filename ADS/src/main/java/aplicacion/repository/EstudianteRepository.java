@@ -45,29 +45,29 @@ public class EstudianteRepository {
 
     public Estudiante findById(long id) {
         return estudiantes.stream()
-                .filter(e -> e.getCodigo() == id)
+                .filter(e -> e.getId() == id)
                 .findFirst()
                 .orElse(null);
     }
 
     public Estudiante save(Estudiante e) {
-        if (e.getCodigo() == 0) {
-            e.setCodigo(generateId());
+        if (e.getId() == 0) {
+            e.setId(generateId());
         }
-        estudiantes.removeIf(x -> x.getCodigo() == e.getCodigo());
+        estudiantes.removeIf(x -> x.getId() == e.getId());
         estudiantes.add(e);
         saveData();
         return e;
     }
 
     public void delete(long id) {
-        estudiantes.removeIf(e -> e.getCodigo() == id);
+        estudiantes.removeIf(e -> e.getId() == id);
         saveData();
     }
 
     private long generateId() {
         return estudiantes.stream()
-                .mapToLong(Estudiante::getCodigo)
+                .mapToLong(Estudiante::getId)
                 .max()
                 .orElse(0) + 1;
     }

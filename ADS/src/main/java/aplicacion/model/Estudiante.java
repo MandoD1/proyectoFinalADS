@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Estudiante {
 
-    private Long codigo;
+    private Long id;
     private String nombre;
     private String email;
     private String carrera;
@@ -39,12 +39,12 @@ public class Estudiante {
         return clases;
     }
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {

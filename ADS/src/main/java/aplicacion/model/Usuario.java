@@ -6,17 +6,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Usuario {
-    public Long codigo;
+    public Long id;
     public String correo;
     public String tipoUsuario;
     public String contraseña;
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCorreo() {

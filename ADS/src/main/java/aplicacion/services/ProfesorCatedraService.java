@@ -19,7 +19,7 @@ public class ProfesorCatedraService extends ProfesorService<ProfesorCatedra> {
         original.setEmail(updated.getEmail());
         original.setDepartamento(updated.getDepartamento());
         original.setPago(updated.getPago());
-        original.setCodigo(updated.getCodigo());
+        original.setId(updated.getId());
         original.setClases(updated.getClases());
         original.setEmpresa(updated.getEmpresa());
         original.setCategoria(updated.getCategoria());

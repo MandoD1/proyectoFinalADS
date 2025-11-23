@@ -39,7 +39,7 @@ public class ClaseService {
     public Clase updateClase(Long id, Clase clase){
         Clase original = findClaseById(id);
 
-        original.setCodigo(clase.getCodigo());
+        original.setId(clase.getId());
         original.setProfesor(clase.getProfesor());
         original.setHorario(clase.getHorario());
         original.setSalon(clase.getSalon());
