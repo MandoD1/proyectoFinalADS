@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class ProfesorRepository<T> {
 
@@ -40,7 +41,7 @@ public abstract class ProfesorRepository<T> {
 
     public T findById(Long id) {
         return data.stream()
-                .filter(e -> ((HasId) e).getCodigo() == id)
+                .filter(e -> Objects.equals(((HasId) e).getCodigo(), id))
                 .findFirst()
                 .orElse(null);
     }
