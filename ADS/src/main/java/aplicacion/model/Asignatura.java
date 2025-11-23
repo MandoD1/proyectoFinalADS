@@ -23,16 +23,31 @@ public class Asignatura {
         this.prerequisitos.add(asignatura);
     }
 
-    public void removePrerequisitos(Asignatura asignatura){ this.prerequisitos.remove(asignatura); }
+    public void removePrerequisitos(Asignatura asignatura) {
+        try {
+            if (asignatura != null) {
+                this.prerequisitos.remove(asignatura);
+            }
+        } catch (Exception e) {
+            // No hacer nada si falla
+        }
+    }
 
     private List<Asignatura> corequisitos = new ArrayList<>();
 
-    public void addCorequisitos(Asignatura asignatura){
+    public void addCorequisitos(Asignatura asignatura) {
         this.corequisitos.add(asignatura);
     }
 
-    public void removeCorequisitos(Asignatura asignatura){ this.corequisitos.remove(asignatura); }
-
+    public void removeCorequisitos(Asignatura asignatura) {
+        try {
+            if (asignatura != null) {
+                this.corequisitos.remove(asignatura);
+            }
+        } catch (Exception e) {
+            // No hacer nada si falla
+        }
+    }
     private List<Clase> clases = new ArrayList<>();
 
     public void addClases(Clase clase){
@@ -51,14 +66,6 @@ public class Asignatura {
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
-    }
-
-    public Long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
     }
 
     public String getNombre() {
@@ -115,5 +122,13 @@ public class Asignatura {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

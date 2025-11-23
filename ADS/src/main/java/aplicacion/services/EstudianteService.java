@@ -68,6 +68,10 @@ public class EstudianteService {
            throw new IllegalArgumentException("Clase llena");
         }
 
+        if (estudiante.tieneChoqueHorario(clase)) {
+            throw new IllegalArgumentException("El estudiante ya tiene una clase en ese horario");
+        }
+
         clase.aumentarCupo();
         estudiante.addClase(clase);
         return estudianteRepository.save(estudiante);

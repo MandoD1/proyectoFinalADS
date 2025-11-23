@@ -47,6 +47,7 @@ public class ClaseService {
         original.setSemestre(clase.getSemestre());
         original.setEstudiantes(clase.getEstudiantes());
         original.setAsignatura(clase.getAsignatura());
+        original.setHoras(clase.getHoras());
 
         return claseRepository.save(original);
     }

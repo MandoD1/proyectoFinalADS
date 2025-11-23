@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -31,9 +32,16 @@ public class Estudiante {
 
     public void addCarrera(Carrera carrera){this.carreras.add(carrera);}
 
-    public void deleteCarrera(Carrera carrera){
-        this.carreras.remove(carrera);
+    public void deleteCarrera(Carrera carrera) {
+        try {
+            if (carrera != null) {
+                this.carreras.remove(carrera);
+            }
+        } catch (Exception e) {
+            // No hacer nada
+        }
     }
+
 
     public List<Clase> getClases() {
         return clases;
@@ -90,6 +98,23 @@ public class Estudiante {
     public void setCarreras(List<Carrera> carreras) {
         this.carreras = carreras;
     }
+
+    public boolean tieneChoqueHorario(Clase nuevaClase) {
+        List<Date> nuevoHorario = nuevaClase.getHorario();
+
+        for (Clase claseExistente : clases) {
+            for (Date fechaExistente : claseExistente.getHorario()) {
+                for (Date fechaNueva : nuevoHorario) {
+                    if (fechaExistente.equals(fechaNueva)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
 }
 
 

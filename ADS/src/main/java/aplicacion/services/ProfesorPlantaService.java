@@ -21,5 +21,6 @@ public class ProfesorPlantaService extends ProfesorService<ProfesorPlanta> {
         original.setPago(updated.getPago());
         original.setId(updated.getId());
         original.setClases(updated.getClases());
+        original.setHorasDeClase();
     }
 }

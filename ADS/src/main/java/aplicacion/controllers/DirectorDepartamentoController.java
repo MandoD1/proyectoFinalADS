@@ -21,31 +21,14 @@ public class DirectorDepartamentoController extends ProfesorController<DirectorD
         this.directorDepartamentoService = directorDepartamentoService;
     }
 
-
     @GetMapping("/{pId}/verprofesor")
-    public Profesor getProfesor(@PathVariable Long pId){
-        return directorDepartamentoService.consultarProfesor(pId);
-    }
-
-    @GetMapping("/crearasignatura/{dId}/")
-    public Departamento crearAsignatura(@PathVariable Long dId, @RequestBody String nombre, @RequestBody List<Clase> clases, @RequestBody List<Asignatura> Corequisitos, @RequestBody boolean requisitoIngles, @RequestBody List<Asignatura> Prerequisitos, @RequestBody int creditos){
-        return directorDepartamentoService.crearAsignatura( nombre,  dId,  clases,  Corequisitos,  requisitoIngles,  Prerequisitos, creditos);
-    }
-
-    @GetMapping("/modificarclase/{cId}")
-    public void modificarClase(Long cId, Long nuevoId, Long profesorId, List<Date> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Estudiante> estudiantes ){
-        directorDepartamentoService.modificarClase(cId, nuevoId, profesorId, horario, salon, cupoMaximo, cupoActual, semestre, AsignaturaId, estudiantes);
-    }
+    public void getProfesor(@PathVariable Long pId){directorDepartamentoService.generarInformeProfesor(pId);}
 
     @GetMapping("/verProfesores")
-    public List<Profesor> getProfesores(){
-        List<ProfesorCatedra> profesoresCatedra = directorDepartamentoService.mostrarProfesoresCatedra();
-        List<ProfesorPlanta> profesoresPlanta = directorDepartamentoService.mostrarProfesoresPlanta();
-        List<Profesor> profesores = new ArrayList<>();
+    public void generarInformeProfesores(){directorDepartamentoService.generarInformeProfesores();}
 
-        profesores.addAll(profesoresCatedra);
-        profesores.addAll(profesoresPlanta);
-
-        return profesores;
+    @GetMapping("/{pId}")
+    public double calcularpago(@PathVariable Long pId, @RequestBody int horasDictadas, @RequestBody int minHoras, @RequestBody int maxHoras){
+        return directorDepartamentoService.calcularpago(pId, horasDictadas, minHoras, maxHoras);
     }
 }

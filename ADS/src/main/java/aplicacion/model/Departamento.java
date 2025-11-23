@@ -18,7 +18,6 @@ public class Departamento {
         this.asignaturas.add(asignatura);
     }
 
-    public void removeAsignaturas(Asignatura asignatura){ this.asignaturas.remove(asignatura); }
 
     private List<Profesor> profesores = new ArrayList<>();
 
@@ -26,7 +25,26 @@ public class Departamento {
         this.profesores.add(profesor);
     }
 
-    public void removeProfesores(Profesor profesor){ this.profesores.remove(profesor); }
+    public void removeAsignaturas(Asignatura asignatura) {
+        try {
+            if (asignatura != null) {
+                this.asignaturas.remove(asignatura);
+            }
+        } catch (Exception e) {
+            // No hacer nada
+        }
+    }
+
+    public void removeProfesores(Profesor profesor) {
+        try {
+            if (profesor != null) {
+                this.profesores.remove(profesor);
+            }
+        } catch (Exception e) {
+            // No hacer nada
+        }
+    }
+
 
     public String getNombre() {
         return nombre;

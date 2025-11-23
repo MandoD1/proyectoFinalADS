@@ -3,6 +3,8 @@ package aplicacion.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 public class Usuario {
@@ -10,6 +12,7 @@ public class Usuario {
     public String correo;
     public String tipoUsuario;
     public String contraseña;
+    public Date fechaActual;
 
     public Long getId() {
         return id;
@@ -41,5 +44,13 @@ public class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public Date getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual() {
+        this.fechaActual = new Date();
     }
 }

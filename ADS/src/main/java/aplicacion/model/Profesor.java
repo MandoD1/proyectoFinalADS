@@ -14,6 +14,7 @@ public class Profesor {
     private Departamento departamento;
     private double pago;
     private Long id;
+    private int horasDeClase;
 
     private List<Clase> clases = new ArrayList<>();
 
@@ -21,8 +22,14 @@ public class Profesor {
         this.clases.add(clase);
     }
 
-    public void removeClases(Clase clase){
-        this.clases.remove(clase);
+    public void removeClases(Clase clase) {
+        try {
+            if (clase != null) {
+                this.clases.remove(clase);
+            }
+        } catch (Exception e) {
+            // No hacer nada si ocurre un error
+        }
     }
 
     public String getNombre() {
@@ -72,4 +79,18 @@ public class Profesor {
     public void setClases(List<Clase> clases) {
         this.clases = clases;
     }
+
+    public float getHorasDeClase() { return horasDeClase; }
+
+    public int getTotalHoras() {
+        int total = 0;
+
+        for (Clase clase : clases) {
+            total += clase.getHoras();
+        }
+
+        return total;
+    }
+
+    public void setHorasDeClase() {this.horasDeClase = getTotalHoras(); }
 }

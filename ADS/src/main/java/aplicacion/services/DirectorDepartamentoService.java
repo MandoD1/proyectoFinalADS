@@ -1,10 +1,16 @@
 package aplicacion.services;
 
 import aplicacion.model.*;
+import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import aplicacion.repository.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +24,11 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
     private final UsuarioRepository usuarioRepository;
     private final ProfesorPlantaRepository profesorPlantaRepository;
     private final ProfesorCatedraRepository profesorCatedraRepository;
+    private final SemestreRepository semestreRepository;
+    private final ProfesorCatedraService profesorCatedraService;
 
     @Autowired
-    public DirectorDepartamentoService(DirectorDepartamentoRepository directorDepartamentoRepository, DepartamentoRepository departamentoRepository, AsignaturaRepository asignaturaRepository, ClaseService claseService, AsignaturaService asignaturaService, UsuarioRepository usuarioRepository, ProfesorPlantaRepository profesorPlantaRepository, ProfesorCatedraRepository profesorCatedraRepository) {
+    public DirectorDepartamentoService(DirectorDepartamentoRepository directorDepartamentoRepository, DepartamentoRepository departamentoRepository, AsignaturaRepository asignaturaRepository, ClaseService claseService, AsignaturaService asignaturaService, UsuarioRepository usuarioRepository, ProfesorPlantaRepository profesorPlantaRepository, ProfesorCatedraRepository profesorCatedraRepository, SemestreRepository semestreRepository, ProfesorCatedraService profesorCatedraService) {
         super(directorDepartamentoRepository);
         this.departamentoRepository = departamentoRepository;
         this.asignaturaRepository = asignaturaRepository;
@@ -29,6 +37,8 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         this.usuarioRepository = usuarioRepository;
         this.profesorPlantaRepository = profesorPlantaRepository;
         this.profesorCatedraRepository = profesorCatedraRepository;
+        this.semestreRepository = semestreRepository;
+        this.profesorCatedraService = profesorCatedraService;
     }
 
     @Override
@@ -46,136 +56,165 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         return findById(id);
     }
 
-    public Departamento crearAsignatura(String nombre, Long departamentoId, List<Clase> clases, List<Asignatura> Corequisitos, boolean requisitoIngles, List<Asignatura> Prerequisitos, int creditos) {
-        Asignatura asignatura = new Asignatura();
-        Departamento departamento = departamentoRepository.findById(departamentoId);
-        Usuario usuario = usuarioRepository.loadUsuario();
-        
-        if (departamento == null) {
-            throw  new RuntimeException("Departamento no existe");
-        }
-        
-        if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getId();
-            DirectorDepartamento directorDepartamento = findById(codigo1);
-            if(directorDepartamento != null){
-                Departamento departamento1 = departamentoRepository.findById(directorDepartamento.getDepartamento().getId());
-                if(departamento1 == departamento){
-                    asignatura.setNombre(nombre);
-                    asignatura.setDepartamento(departamento);
-                    asignatura.setCorequisitos(Corequisitos);
-                    asignatura.setRequisitoingles(requisitoIngles);
-                    asignatura.setPrerequisitos(Prerequisitos);
-                    asignatura.setClases(clases);
-                    asignatura.setCreditos(creditos);
-                    departamento.addAsignaturas(asignatura);
-                    asignaturaService.createAsignatura(asignatura);
-                } else {throw new RuntimeException("no eres directror de departamento del departamento al que quieres agregar una asignatura");}
-            } else { throw new RuntimeException("director de departamento no encontrado"); }
-        } else { throw new RuntimeException("No eres director de departamento"); }
-
-        return departamentoRepository.save(departamento);
-    }
-
-    public void modificarClase(Long cid, Long nuevoId, Long profesorId, List<Date> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Estudiante> estudiantes ) {
-        Clase clase = new Clase();
-        Clase claseOriginal = claseService.findClaseById(cid);
-        boolean laClaseExiste = false;
-
-        Profesor profesor = findById(profesorId);
-        Asignatura asignatura = asignaturaRepository.findById(AsignaturaId);
-
-        Usuario usuario = usuarioRepository.loadUsuario();
-
-        if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getId();
-            DirectorDepartamento directorDepartamento = findById(codigo1);
-            if(directorDepartamento != null){
-                List<Asignatura> asignaturasDeDepartamentoDeUsuario = directorDepartamento.getDepartamento().getAsignaturas();
-                for (Asignatura asignatura1 : asignaturasDeDepartamentoDeUsuario){
-                    List<Clase> clasesAsignaturaDeDepartamentoDeUsuario = asignatura1.getClases();
-                    for (Clase clase1 : clasesAsignaturaDeDepartamentoDeUsuario){
-                        Long idClase1 = clase1.getId();
-                        if(idClase1 == cid){
-                            laClaseExiste = true;
-                        }
-                    }
-                }
-            } else {throw new RuntimeException("director de departamento no encontrado");}
-        } else { throw new RuntimeException("No eres director de departamento"); }
-
-        if(laClaseExiste){
-            clase.setId(nuevoId);
-            clase.setAsignatura(asignatura);
-            clase.setProfesor(profesor);
-            clase.setSalon(salon);
-            clase.setCupoMaximo(cupoMaximo);
-            clase.setCupoActual(cupoActual);
-            clase.setSemestre(semestre);
-            clase.setHorario(horario);
-            clase.setEstudiantes(estudiantes);
-            claseService.updateClase(cid, clase);
-        }
-    }
-
-    public void eliminarAsignatura(Long did, Long asignaturaId) {
-        Departamento departamento = departamentoRepository.findById(did);
-        Asignatura asignatura = asignaturaRepository.findById(asignaturaId);
-
-        Usuario usuario = usuarioRepository.loadUsuario();
-
-        if (departamento == null) {
-            throw  new RuntimeException("Departamento no existe");
-        }
-
-        if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getId();
-            DirectorDepartamento directorDepartamento = findById(codigo1);
-            if(directorDepartamento != null){
-                Departamento departamento1 = departamentoRepository.findById(directorDepartamento.getDepartamento().getId());
-                if(departamento1 == departamento){
-                    departamento.removeAsignaturas(asignatura);
-                } else {throw new RuntimeException("no eres directror de departamento del departamento al que quieres agregar una asignatura");}
-            } else { throw new RuntimeException("director de departamento no encontrado"); }
-        } else { throw new RuntimeException("No eres director de departamento"); }
-
-
-        departamentoRepository.save(departamento);
-    }
-
-    public void eliminarClase(Long cid ) {
-        boolean laClaseExiste = false;
-
-        Usuario usuario = usuarioRepository.loadUsuario();
-
-        if(usuario.getTipoUsuario().equals("DirectorDepartamento")){
-            Long codigo1 = usuario.getId();
-            DirectorDepartamento directorDepartamento = findById(codigo1);
-            if(directorDepartamento != null){
-                List<Asignatura> asignaturasDeDepartamentoDeUsuario = directorDepartamento.getDepartamento().getAsignaturas();
-                for (Asignatura asignatura1 : asignaturasDeDepartamentoDeUsuario){
-                    List<Clase> clasesAsignaturaDeDepartamentoDeUsuario = asignatura1.getClases();
-                    for (Clase clase1 : clasesAsignaturaDeDepartamentoDeUsuario){
-                        Long idClase1 = clase1.getId();
-                        if(idClase1 == cid){
-                            laClaseExiste = true;
-                        }
-                    }
-                }
-            } else {throw new RuntimeException("director de departamento no encontrado");}
-        } else { throw new RuntimeException("No eres director de departamento"); }
-
-        if(laClaseExiste){
-            claseService.deleteClass(cid);
-        }
+    public int verHorasProfesor(Long pId){
+        Profesor profesor = findById(pId);
+        return profesor.getTotalHoras();
     }
 
     public List<ProfesorPlanta> mostrarProfesoresPlanta(){
-        return profesorPlantaRepository.loadAllPlanta();
+        List<ProfesorPlanta> profesoresPlanta = profesorPlantaRepository.loadAllPlanta();
+        List<ProfesorPlanta> profesoresPlantaDepartamento = new ArrayList<>();
+        Usuario user = usuarioRepository.loadUsuario();
+        String tipoUsuario = user.getTipoUsuario();
+        Departamento departamentoActual = new Departamento();
+        DirectorDepartamento directorDepartamentoActual = new DirectorDepartamento();
+        Long idUsuario = usuarioRepository.loadUsuario().getId();
+
+        if(tipoUsuario.equals("DirectorDepartamento")){
+            directorDepartamentoActual = (DirectorDepartamento) findById(idUsuario);
+            departamentoActual = directorDepartamentoActual.getDepartamento();
+            for(ProfesorPlanta profesorPlanta : profesoresPlanta){
+                Departamento departamentoProfesor = profesorPlanta.getDepartamento();
+                if(departamentoProfesor == departamentoActual){
+                    profesoresPlantaDepartamento.add(profesorPlanta);
+                }
+            }
+        }
+
+        return profesoresPlantaDepartamento;
     }
 
     public List<ProfesorCatedra> mostrarProfesoresCatedra(){
-        return profesorCatedraRepository.loadAllCatedra();
+        List<ProfesorCatedra> profesoresCatedra = profesorCatedraRepository.loadAllCatedra();
+        List<ProfesorCatedra> profesoresCatedraDepartamento = new ArrayList<>();
+        Usuario user = usuarioRepository.loadUsuario();
+        String tipoUsuario = user.getTipoUsuario();
+        Departamento departamentoActual = new Departamento();
+        DirectorDepartamento directorDepartamentoActual = new DirectorDepartamento();
+        Long idUsuario = usuarioRepository.loadUsuario().getId();
+
+        if(tipoUsuario.equals("DirectorDepartamento")){
+            directorDepartamentoActual = (DirectorDepartamento) findById(idUsuario);
+            departamentoActual = directorDepartamentoActual.getDepartamento();
+            for(ProfesorCatedra profesorCatedra : profesoresCatedra){
+                Departamento departamentoProfesor = profesorCatedra.getDepartamento();
+                if(departamentoProfesor == departamentoActual){
+                    profesoresCatedraDepartamento.add(profesorCatedra);
+                }
+            }
+        }
+
+        return profesoresCatedraDepartamento;
+    }
+
+    public void generarInformeProfesores() {
+
+        List<ProfesorPlanta> planta = mostrarProfesoresPlanta();
+        List<ProfesorCatedra> catedra = mostrarProfesoresCatedra();
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("INFORME DE PROFESORES\n");
+        sb.append("----------------------\n\n");
+
+        sb.append("PROFESORES DE CÁTEDRA\n");
+        sb.append("----------------------\n");
+        if (catedra.isEmpty()) {
+            sb.append("  * No hay profesores de cátedra registrados\n");
+        } else {
+            for (ProfesorCatedra p : catedra) {
+                sb.append("  - ID: ").append(p.getId()).append("\n");
+            }
+        }
+
+        sb.append("\nPROFESORES DE PLANTA\n");
+        sb.append("----------------------\n");
+        if (planta.isEmpty()) {
+            sb.append("  * No hay profesores de planta registrados\n");
+        } else {
+            for (ProfesorPlanta p : planta) {
+                sb.append("  - ID: ").append(p.getId()).append("\n");
+            }
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar informe de profesores");
+        fileChooser.setInitialFileName("informe_profesores.txt");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivo de texto", "*.txt"));
+
+        File archivo = fileChooser.showSaveDialog(null);
+
+        if (archivo != null) {
+            try (FileWriter writer = new FileWriter(archivo)) {
+                writer.write(sb.toString());
+            } catch (IOException e) {
+                throw new RuntimeException("Error al guardar el archivo", e);
+            }
+        }
+    }
+
+    public void generarInformeProfesor(Long pId){
+        Profesor profesor = findById(pId);
+        if(profesor == null)
+            throw new RuntimeException("Profesor no encontrado");
+
+        List<Asignatura> asignaturas = asignaturaRepository.findAll();
+        List<Asignatura> asignaturasProfesor = new ArrayList<>();
+
+        for(Asignatura asignatura : asignaturas){
+            boolean profesorEnAsignatura = false;
+
+            for(Clase clase : asignatura.getClases()){
+                Profesor profesorAux = clase.getProfesor();
+                if(profesorAux != null && profesorAux.getId().equals(pId)){
+                    profesorEnAsignatura = true;
+                    break;
+                }
+            }
+
+            if(profesorEnAsignatura){
+                asignaturasProfesor.add(asignatura);
+            }
+        }
+
+        int horasTotales = profesor.getTotalHoras();
+
+        StringBuilder informe = new StringBuilder();
+        informe.append("INFORME DEL PROFESOR\n");
+        informe.append("--------------------\n");
+        informe.append("Nombre: ").append(profesor.getNombre()).append("\n");
+        informe.append("ID: ").append(profesor.getId()).append("\n\n");
+
+        informe.append("Asignaturas asignadas:\n");
+        if(asignaturasProfesor.isEmpty()){
+            informe.append(" - Ninguna asignatura asignada\n");
+        } else {
+            for(Asignatura a : asignaturasProfesor){
+                informe.append(" - ").append(a.getNombre()).append("\n");
+            }
+        }
+
+        informe.append("\nTotal horas: ").append(horasTotales).append("\n");
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar informe de profesor");
+        fileChooser.setInitialFileName("informe_profesor_" + pId + ".txt");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivo de texto", "*.txt"));
+
+        File archivo = fileChooser.showSaveDialog(null);
+
+        if(archivo != null){
+            try (FileWriter writer = new FileWriter(archivo)) {
+                writer.write(informe.toString());
+            } catch (IOException e) {
+                throw new RuntimeException("Error al guardar el informe", e);
+            }
+        }
+    }
+
+    public double calcularpago(Long pid, int horasDictadas, int minHoras, int maxHoras){
+        ProfesorCatedra profesorCatedra = profesorCatedraRepository.findById(pid);
+        return profesorCatedraService.calcularPago(horasDictadas, minHoras, maxHoras, profesorCatedra);
     }
 
 

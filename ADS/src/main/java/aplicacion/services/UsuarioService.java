@@ -67,6 +67,7 @@ public class UsuarioService {
 
     public Usuario login(String correo, String contraseña) {
         Usuario usuario = usuarioRepository.findByCorreo(correo);
+        usuario.setFechaActual();
 
         if (usuario == null)
             throw new IllegalArgumentException("usuario no encontrado");

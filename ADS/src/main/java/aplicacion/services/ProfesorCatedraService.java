@@ -23,6 +23,7 @@ public class ProfesorCatedraService extends ProfesorService<ProfesorCatedra> {
         original.setClases(updated.getClases());
         original.setEmpresa(updated.getEmpresa());
         original.setCategoria(updated.getCategoria());
+        original.setHorasDeClase();
     }
 
     public double calcularPago(int horasDictadas, int minHoras, int maxHoras, ProfesorCatedra profesor) {

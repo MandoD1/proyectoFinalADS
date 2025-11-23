@@ -13,6 +13,7 @@ public class Clase {
     private Long id;
     private Profesor profesor;
     private List<Date> horario;
+    private int horas;
     private String salon;
     private int cupoMaximo;
     private int cupoActual;
@@ -25,8 +26,14 @@ public class Clase {
         this.estudiantes.add(estudiante);
     }
 
-    public void retirarEstudiante(Estudiante estudiante){
-        this.estudiantes.remove(estudiante);
+    public void retirarEstudiante(Estudiante estudiante) {
+        try {
+            if (estudiante != null) {
+                this.estudiantes.remove(estudiante);
+            }
+        } catch (Exception e) {
+            // No hacer nada si ocurre un error
+        }
     }
 
     public boolean cupo(){
@@ -34,6 +41,14 @@ public class Clase {
             return true;
         }
         return false;
+    }
+
+    public boolean cupomenoral40(){
+        return cupoActual < (0.4 * cupoMaximo);
+    }
+
+    public boolean conProfesor(){
+        return profesor != null;
     }
 
     public void aumentarCupo(){
@@ -111,4 +126,13 @@ public class Clase {
     public void setEstudiantes(List<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
     }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
 }
+

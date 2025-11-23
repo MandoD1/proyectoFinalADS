@@ -118,48 +118,48 @@ public class AsignaturaService {
         return  asignaturaRepository.save(asignatura);
     }
 
-    public Asignatura eliminarPrerequisito(Long asignaturaid, Long prerequisitoid){
-        Asignatura asignatura = findAsignaturaById(asignaturaid);
-        Asignatura prerequisito = findAsignaturaById(prerequisitoid);
+    public Asignatura eliminarPrerequisito(Long asignaturaId, Long prerequisitoId) {
+        Asignatura asignatura = findAsignaturaById(asignaturaId);
+        Asignatura prerequisito = findAsignaturaById(prerequisitoId);
 
-        if (asignatura == null)
-            throw new IllegalArgumentException("asignatura no encontrada");
+        try {
+            asignatura.removePrerequisitos(prerequisito);
+        } catch (Exception e) {
+            // No hacer nada
+        }
 
-        if (prerequisito == null)
-            throw new IllegalArgumentException("asignatura no encontrada");
-
-        asignatura.removePrerequisitos(prerequisito);
         return asignaturaRepository.save(asignatura);
     }
 
 
-    public Asignatura eliminarCorequisito(Long asignaturaid, Long corequisitoid){
-        Asignatura asignatura = findAsignaturaById(asignaturaid);
-        Asignatura corequisito = findAsignaturaById(corequisitoid);
 
-        if (asignatura == null)
-            throw new IllegalArgumentException("asignatura no encontrada");
+    public Asignatura eliminarCorequisito(Long asignaturaId, Long corequisitoId) {
+        Asignatura asignatura = findAsignaturaById(asignaturaId);
+        Asignatura corequisito = findAsignaturaById(corequisitoId);
 
-        if (corequisito == null)
-            throw new IllegalArgumentException("asignatura no encontrada");
+        try {
+            asignatura.removeCorequisitos(corequisito);
+        } catch (Exception e) {
+            // No hacer nada
+        }
 
-        asignatura.removeCorequisitos(corequisito);
         return asignaturaRepository.save(asignatura);
     }
 
-    public Asignatura eliminarClase(Long asignaturaid, Long classeid){
-        Asignatura asignatura = findAsignaturaById(asignaturaid);
-        Clase clase = claseRepository.findById(classeid);
 
-        if (asignatura == null)
-            throw new IllegalArgumentException("asignatura no encontrada");
+    public Asignatura eliminarClase(Long asignaturaId, Long claseId) {
+        Asignatura asignatura = findAsignaturaById(asignaturaId);
+        Clase clase = claseRepository.findById(claseId);
 
-        if (clase == null)
-            throw new IllegalArgumentException("clase no encontrada");
+        try {
+            asignatura.removeClases(clase);
+        } catch (Exception e) {
+            // No hacer nada si falla
+        }
 
-        asignatura.removeClases(clase);
         return asignaturaRepository.save(asignatura);
     }
+
 
     public List<Asignatura> seePrerequisitos(Long asignaturaid){
         Asignatura asignatura = findAsignaturaById(asignaturaid);
