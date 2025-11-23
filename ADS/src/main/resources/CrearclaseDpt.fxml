@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicacion.controllers.CrearClaseDeptControllerFX">
+    <top>
+        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #ca2c78;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #9c1656;">
+                    <children>
+                        <Button fx:id="btnVolverMenuDCarrera" mnemonicParsing="false" onAction="#onActionVolverMenuDCarrera" prefHeight="42.0" prefWidth="88.0" text="Volver">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="34.0" prefWidth="224.0" text="Digite el id de la clase a crear:">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idCrearClase" />
+                <Label prefHeight="34.0" prefWidth="224.0" text="Cupo Maximo:">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idcupomaxcrearClase" />
+            </children>
+        </VBox>
+    </left>
+    <right>
+        <VBox alignment="TOP_CENTER" prefHeight="258.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="34.0" prefWidth="224.0" text="Profesor asignado (ID):">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idClaseCrearProfe" />
+                <Label prefHeight="34.0" prefWidth="224.0" text="Nombre de la asignatura:">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idclasecrearnombre" />
+                <Button fx:id="btnCrearClasedpt" mnemonicParsing="false" onAction="#OnActionCrearClasedpt" style="-fx-background-color: #ca2c78;" text="Crear Clase" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </right>
+</BorderPane>
