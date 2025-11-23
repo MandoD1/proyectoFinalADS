@@ -95,7 +95,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
                 for (Asignatura asignatura1 : asignaturasDeDepartamentoDeUsuario){
                     List<Clase> clasesAsignaturaDeDepartamentoDeUsuario = asignatura1.getClases();
                     for (Clase clase1 : clasesAsignaturaDeDepartamentoDeUsuario){
-                        Long idClase1 = clase1.getId();
+                        Long idClase1 = clase1.getCodigo();
                         if(idClase1 == cid){
                             laClaseExiste = true;
                         }
@@ -105,7 +105,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
         } else { throw new RuntimeException("No eres director de departamento"); }
 
         if(laClaseExiste){
-            clase.setId(nuevoId);
+            clase.setCodigo(nuevoId);
             clase.setAsignatura(asignatura);
             clase.setProfesor(profesor);
             clase.setSalon(salon);
@@ -156,7 +156,7 @@ public class DirectorDepartamentoService extends ProfesorService<DirectorDeparta
                 for (Asignatura asignatura1 : asignaturasDeDepartamentoDeUsuario){
                     List<Clase> clasesAsignaturaDeDepartamentoDeUsuario = asignatura1.getClases();
                     for (Clase clase1 : clasesAsignaturaDeDepartamentoDeUsuario){
-                        Long idClase1 = clase1.getId();
+                        Long idClase1 = clase1.getCodigo();
                         if(idClase1 == cid){
                             laClaseExiste = true;
                         }

@@ -45,30 +45,30 @@ public class ClaseRepository {
 
     public Clase findById(Long id) {
         return clases.stream()
-                .filter(c -> c.getId().equals(id))
+                .filter(c -> c.getCodigo().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     public Clase save(Clase clase) {
-        if (clase.getId() == null) {
-            clase.setId(generateId());
+        if (clase.getCodigo() == null) {
+            clase.setCodigo(generateId());
         }
 
-        clases.removeIf(c -> c.getId().equals(clase.getId()));
+        clases.removeIf(c -> c.getCodigo().equals(clase.getCodigo()));
         clases.add(clase);
         saveData();
         return clase;
     }
 
     public void delete(Long id) {
-        clases.removeIf(c -> c.getId().equals(id));
+        clases.removeIf(c -> c.getCodigo().equals(id));
         saveData();
     }
 
     private Long generateId() {
         return clases.stream()
-                .mapToLong(Clase::getId)
+                .mapToLong(Clase::getCodigo)
                 .max()
                 .orElse(0) + 1;
     }

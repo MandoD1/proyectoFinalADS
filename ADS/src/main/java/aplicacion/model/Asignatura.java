@@ -10,6 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Asignatura {
     private Departamento departamento;
+
+   
     private Long codigo;
     private String nombre;
     private int creditos;
