@@ -53,7 +53,7 @@ public class ConsultarHorarioControllerFX implements Initializable {
     @FXML
     public void onActionVolverEstudMenu(ActionEvent event) throws IOException {
         System.out.println("Navegando a: estudiantemenu.fxml");
-        Parent root = FXMLLoader.load(getClass().getResource("/estudiantemenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/EstudianteMenu.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

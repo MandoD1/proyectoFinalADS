@@ -53,21 +53,21 @@ public class   AdminMenuControllerFX implements Initializable {
     @FXML
     public void onActionVolvertipoLogin(ActionEvent event) throws IOException {
         System.out.println("Navegando a: tipologin.fxml");
-        Parent root = FXMLLoader.load(getClass().getResource("/tipologin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/nTipologin.fxml"));
         cambiarEscena(event, root);
     }
 
     @FXML
     public void onActionConsultarCarga(ActionEvent event) throws IOException {
         System.out.println("Navegando a: ConsultarCarga.fxml");
-        Parent root = FXMLLoader.load(getClass().getResource("/ConsultarCarga.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/nuevoconsultarcarga.fxml"));
         cambiarEscena(event, root);
     }
 
     @FXML
     public void onActionGenerarReporte(ActionEvent event) throws IOException {
         System.out.println("Navegando a: GenerarReporte.fxml");
-        Parent root = FXMLLoader.load(getClass().getResource("/GenerarReporte.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/generarreportev2.fxml"));
         cambiarEscena(event, root);
     }
 

@@ -59,7 +59,7 @@ public class AgregarClaseControllerFX implements Initializable {
      */
     @FXML
     public void onActionVolverEstudMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/estudiantemenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/EstudianteMenu.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

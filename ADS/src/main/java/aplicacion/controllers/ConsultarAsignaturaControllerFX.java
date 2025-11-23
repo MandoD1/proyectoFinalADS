@@ -59,7 +59,7 @@ public class ConsultarAsignaturaControllerFX implements Initializable {
     public void onActionVolverEstudMenu(ActionEvent event) throws IOException {
 
         // 1. Carga la vista de destino
-        Parent root = FXMLLoader.load(getClass().getResource("estudiantemenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EstudianteMenu.fxml"));
 
         // 2. Obtiene la Stage (ventana) actual y cambia la escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -47,7 +47,7 @@ public class ConsultarCargaControllerFX implements Initializable {
     @FXML
     public void onActionVolverAdminMenu(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/AdminMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/menudirectordept.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
