@@ -13,7 +13,7 @@ public class MultiFileProfesorRepository<T extends Profesor> extends ProfesorRep
     private final File file2;
 
     public MultiFileProfesorRepository(String filePath1, String filePath2, TypeReference<List<T>> type) {
-        super(filePath1, type); // carga primer archivo
+        super(filePath1, type);
         this.file2 = new File(filePath2);
         loadSecondFile(type);
     }
@@ -31,10 +31,8 @@ public class MultiFileProfesorRepository<T extends Profesor> extends ProfesorRep
 
     @Override
     public T findById(Long id) {
-        // primero busca en el primer archivo
         T result = super.findById(id);
         if (result != null) return result;
-        // si no encontró, busca en el segundo archivo
         return data2.stream()
                 .filter(e -> ((HasId) e).getCodigo() == id)
                 .findFirst()
@@ -53,9 +51,9 @@ public class MultiFileProfesorRepository<T extends Profesor> extends ProfesorRep
         boolean removed = super.findAll().removeIf(e -> ((HasId)e).getCodigo() == id);
         removed = data2.removeIf(e -> ((HasId)e).getCodigo() == id) || removed;
         if (removed) {
-            saveData(); // guarda primer archivo
+            saveData();
             try {
-                mapper.writerWithDefaultPrettyPrinter().writeValue(file2, data2); // guarda segundo archivo
+                mapper.writerWithDefaultPrettyPrinter().writeValue(file2, data2);
             } catch (Exception e) {
                 throw new RuntimeException("Error guardando JSON: " + file2.getPath(), e);
             }
@@ -68,7 +66,6 @@ public class MultiFileProfesorRepository<T extends Profesor> extends ProfesorRep
         if (obj.getCodigo() == 0) obj.setCodigo(generateId());
         boolean updated = false;
 
-        // actualiza si existe en primer archivo
         if (super.findAll().stream().anyMatch(x -> ((HasId)x).getCodigo() == obj.getCodigo())) {
             super.findAll().removeIf(x -> ((HasId)x).getCodigo() == obj.getCodigo());
             super.findAll().add(e);
@@ -76,7 +73,6 @@ public class MultiFileProfesorRepository<T extends Profesor> extends ProfesorRep
             updated = true;
         }
 
-        // actualiza si existe en segundo archivo
         if (!updated && data2.stream().anyMatch(x -> ((HasId)x).getCodigo() == obj.getCodigo())) {
             data2.removeIf(x -> ((HasId)x).getCodigo() == obj.getCodigo());
             data2.add(e);
@@ -88,7 +84,6 @@ public class MultiFileProfesorRepository<T extends Profesor> extends ProfesorRep
             updated = true;
         }
 
-        // si no existía, lo guarda en el primer archivo
         if (!updated) {
             super.save(e);
         }
