@@ -19,10 +19,13 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 // API (Otras importaciones que usas, aunque no se usan directamente aquí)
 
-
+@Component
+@Scope("prototype")
 public class TipoLoginControllerFX implements Initializable {
 
     // ************************************************
