@@ -46,23 +46,23 @@ public class EstudianteController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{eId}/clases/{cId}")
+    @PostMapping("/asignarclases")
     public Estudiante assignClass(
-            @PathVariable Long eId,
-            @PathVariable Long cId){
+            @RequestParam Long eId,
+            @RequestParam Long cId){
         return estudianteService.assignClassToEstudiante(eId, cId);
     }
 
-    @PostMapping("/{eId}/retirarclases/{cId}")
+    @PostMapping("/retirarclases")
     public Estudiante retirarClase(
-            @PathVariable Long eId,
-            @PathVariable Long cId){
+            @RequestParam Long eId,
+            @RequestParam Long cId){
         return estudianteService.retirarClaseOfEstudiante(eId, cId);
     }
 
-    @PostMapping("/{eId}/verclases")
+    @PostMapping("/verclases")
     public List<Clase> verClases(
-            @PathVariable Long eId){
+            @RequestParam Long eId){
         return estudianteService.SeeClasesOfEstudiante(eId);
     }
 }

@@ -17,8 +17,8 @@ public class ProfesorCatedraController extends ProfesorController<ProfesorCatedr
         this.profesorCatedraService = profesorCatedraService1;
     }
 
-    @GetMapping("/{horas}/{horasmax}/{horasmin}/{pId}")
-    public double calcularPago(@PathVariable int horas, @PathVariable int horasmax, @PathVariable int horasmin, @PathVariable Long pId){
+    @GetMapping("/calcularpago")
+    public double calcularPago(@RequestParam int horas, @RequestParam int horasmax, @RequestParam int horasmin, @RequestParam Long pId){
         ProfesorCatedra profesorCatedra = profesorCatedraService.findById(pId);
         return profesorCatedraService.calcularPago(horas, horasmin, horasmax, profesorCatedra);
     }

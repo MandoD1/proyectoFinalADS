@@ -21,14 +21,15 @@ public class DirectorDepartamentoController extends ProfesorController<DirectorD
         this.directorDepartamentoService = directorDepartamentoService;
     }
 
-    @GetMapping("/{pId}/verprofesor")
-    public void getProfesor(@PathVariable Long pId){directorDepartamentoService.generarInformeProfesor(pId);}
+    @GetMapping("/erprofesor")
+    public void getProfesor( @RequestParam Long pId){directorDepartamentoService.generarInformeProfesor(pId);}
 
     @GetMapping("/verProfesores")
     public void generarInformeProfesores(){directorDepartamentoService.generarInformeProfesores();}
 
-    @GetMapping("/{pId}")
-    public double calcularpago(@PathVariable Long pId, @RequestBody int horasDictadas, @RequestBody int minHoras, @RequestBody int maxHoras){
+    @GetMapping("/calcularpago")
+    public double calcularpago(@RequestParam Long pId, @RequestParam int horasDictadas, @RequestParam int minHoras, @RequestParam int maxHoras) {
         return directorDepartamentoService.calcularpago(pId, horasDictadas, minHoras, maxHoras);
     }
+
 }

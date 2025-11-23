@@ -13,7 +13,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping("/register")
-    public Usuario register(@RequestBody String correo, @RequestBody String contraseña, @RequestBody String tipoUsuario) {
+    public Usuario register(@RequestParam String correo, @RequestParam String contraseña, @RequestParam String tipoUsuario) {
         Usuario usuario = new Usuario();
         usuario.setCorreo(correo);
         usuario.setTipoUsuario(tipoUsuario);
@@ -22,7 +22,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public Usuario login(@RequestBody String correo, @RequestBody String contraseña) {
+    public Usuario login(@RequestParam String correo, @RequestParam String contraseña) {
         return usuarioService.login(correo, contraseña);
     }
 }

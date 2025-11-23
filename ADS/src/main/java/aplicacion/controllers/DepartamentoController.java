@@ -47,41 +47,41 @@ public class DepartamentoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{dId}/profesores/{pId}")
+    @PostMapping("/asignarprofesores")
     public Departamento assignProfesor(
-            @PathVariable Long dId,
-            @PathVariable Long pId){
+            @RequestParam Long dId,
+            @RequestParam Long pId){
         return departamentoService.assignProfesorToDepartamento(pId, dId);
     }
 
-    @PostMapping("/{dId}/asignaturas/{aId}")
+    @PostMapping("/asignarasignaturas")
     public Departamento assignAsignaturas(
-            @PathVariable Long dId,
-            @PathVariable Long aId){
+            @RequestParam Long dId,
+            @RequestParam Long aId){
         return departamentoService.assignAsignaturaToDepartamento(aId, dId);
     }
 
-    @PostMapping("/{dId}/removeprofesores/{pId}")
+    @PostMapping("/removeprofesores")
     public Departamento removeProfesor(
-            @PathVariable Long dId,
-            @PathVariable Long pId){
+            @RequestParam Long dId,
+            @RequestParam Long pId){
         return departamentoService.retirarProfesorToDepartamento(pId, dId);
     }
 
-    @PostMapping("/{dId}/removeasignaturas/{aId}")
+    @PostMapping("/removeasignaturas")
     public Departamento removeAsignaturas(
-            @PathVariable Long dId,
-            @PathVariable Long aId){
+            @RequestParam Long dId,
+            @RequestParam Long aId){
         return departamentoService.retirarAsignaturaToDepartamento(aId, dId);
     }
 
-    @GetMapping("/{did}/profesores")
-    public List<Profesor> verProfesores(@PathVariable Long did){
+    @GetMapping("/verprofesore")
+    public List<Profesor> verProfesores(@RequestParam Long did){
         return departamentoService.findProfesores(did);
     }
 
-    @GetMapping("/{did}/asignaturas")
-    public List<Asignatura> verAsignaturas(@PathVariable Long did){
+    @GetMapping("/verasignaturas")
+    public List<Asignatura> verAsignaturas(@RequestParam Long did){
         return departamentoService.findAsignaturas(did);
     }
 

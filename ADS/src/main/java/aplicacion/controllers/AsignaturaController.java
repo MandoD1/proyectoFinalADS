@@ -45,63 +45,63 @@ public class AsignaturaController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{aId}/prerequisito/{pId}")
+    @PostMapping("/prerequisito")
     public Asignatura assingPrerequisito(
-            @PathVariable Long aId,
-            @PathVariable Long pId){
+            @RequestParam Long aId,
+            @RequestParam Long pId){
         return asignaturaService.assingPrerequisito(aId, pId);
     }
 
-    @PostMapping("/{aId}/corequisito/{cId}")
+    @PostMapping("/corequisito")
     public Asignatura assingCorequisito(
-            @PathVariable Long aId,
-            @PathVariable Long cId){
+            @RequestParam Long aId,
+            @RequestParam Long cId){
         return asignaturaService.assingCorequisito(aId, cId);
     }
 
-    @PostMapping("/{aId}/clase/{claseId}")
+    @PostMapping("/asingclase")
     public Asignatura assingClase(
-            @PathVariable Long aId,
-            @PathVariable Long claseId){
+            @RequestParam Long aId,
+            @RequestParam Long claseId){
         return asignaturaService.assingClase(aId, claseId);
     }
 
-    @PostMapping("/{aId}/Asignatura/{calificacion}/{estado}")
+    @PostMapping("/Asignaturanota")
     public Asignatura assingAsignaturaNotaYEstado(
-            @PathVariable Long aId,
-            @PathVariable int calificacion,
-            @PathVariable String estado){
+            @RequestParam Long aId,
+            @RequestParam int calificacion,
+            @RequestParam String estado){
         return asignaturaService.assingAsignaturaNotaYEstado(aId, estado, calificacion);
     }
 
-    @PostMapping("/{aId}/removeprerequisito/{pId}")
+    @PostMapping("/removeprerequisito")
     public Asignatura removePrerequisito(
-            @PathVariable Long aId,
-            @PathVariable Long pId){
+            @RequestParam Long aId,
+            @RequestParam Long pId){
         return asignaturaService.eliminarPrerequisito(aId, pId);
     }
 
-    @PostMapping("/{aId}/removecorequisito/{cId}")
+    @PostMapping("/removecorequisito")
     public Asignatura removeCorequisito(
-            @PathVariable Long aId,
-            @PathVariable Long cId){
+            @RequestParam Long aId,
+            @RequestParam Long cId){
         return asignaturaService.eliminarCorequisito(aId, cId);
     }
 
-    @PostMapping("/{aId}/removeclase/{claseId}")
+    @PostMapping("/removeclase")
     public Asignatura removeClase(
-            @PathVariable Long aId,
-            @PathVariable Long claseId){
+            @RequestParam Long aId,
+            @RequestParam Long claseId){
         return asignaturaService.eliminarPrerequisito(aId, claseId);
     }
 
-    @PostMapping("/prerequisito/{pId}")
-    public List<Asignatura> getPrerequisitos(@PathVariable Long pId){
+    @PostMapping("/prerequisitoget")
+    public List<Asignatura> getPrerequisitos( @RequestParam Long pId){
         return asignaturaService.seePrerequisitos(pId);
     }
 
-    @PostMapping("/corequisito/{cId}")
-    public List<Asignatura> getCorequisitos(@PathVariable Long cId){
+    @PostMapping("/corequisitoget")
+    public List<Asignatura> getCorequisitos( @RequestParam Long cId){
         return asignaturaService.seeCorequisitos(cId);
     }
 

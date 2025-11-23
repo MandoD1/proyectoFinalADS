@@ -45,17 +45,17 @@ public class ClaseController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{eId}/estudiantes/{cId}")
+    @PostMapping("/asignarestudiantes")
     public Clase assignEstudiante(
-            @PathVariable Long eId,
-            @PathVariable Long cId){
+            @RequestParam Long eId,
+            @RequestParam Long cId){
         return claseService.assignEstudianteToClass(eId, cId);
     }
 
-    @PostMapping("/{eId}/retirarestudiantes/{cId}")
+    @PostMapping("/retirarestudiantes")
     public Clase eliminarEstudiante(
-            @PathVariable Long eId,
-            @PathVariable Long cId){
+            @RequestParam Long eId,
+            @RequestParam Long cId){
         return claseService.retirarEstudianteToClass(eId, cId);
     }
 }

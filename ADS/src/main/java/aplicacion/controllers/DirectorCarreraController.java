@@ -23,34 +23,34 @@ public class DirectorCarreraController extends ProfesorController<DirectorCarrer
         this.claseService = claseService;
     }
 
-    @GetMapping("/{pId}/{cId}/{accion}")
-    public void modificarCarga(@PathVariable Long pId, @PathVariable Long cId,  @PathVariable boolean accion ){
+    @GetMapping("/modificarcarga")
+    public void modificarCarga(@RequestParam Long pId, @RequestParam Long cId,  @RequestParam boolean accion ){
         Clase clase = claseService.findClaseById(cId);
         directorCarreraService.modificarCargaProfesor(pId, clase, accion);
     }
 
-    @GetMapping("/{pId}/verprofesor")
-    public Profesor getProfesor(@PathVariable Long pId){
+    @GetMapping("/verprofesor")
+    public Profesor getProfesor(@RequestParam Long pId){
         return directorCarreraService.consultarProfesor(pId);
     }
 
-    @GetMapping("/crearasignatura/{dId}/")
-    public Departamento crearAsignatura(@RequestBody Long semestreId, @PathVariable Long dId, @RequestBody String nombre, @RequestBody List<Clase> clases, @RequestBody List<Asignatura> Corequisitos, @RequestBody boolean requisitoIngles, @RequestBody List<Asignatura> Prerequisitos, @RequestBody int creditos){
+    @GetMapping("/crearasignatura")
+    public Departamento crearAsignatura(@RequestParam Long semestreId, @RequestParam Long dId, @RequestParam String nombre, @RequestParam List<Clase> clases, @RequestParam List<Asignatura> Corequisitos, @RequestParam boolean requisitoIngles, @RequestParam List<Asignatura> Prerequisitos, @RequestParam int creditos){
         return directorCarreraService.crearAsignatura(semestreId, nombre,  dId,  clases,  Corequisitos,  requisitoIngles,  Prerequisitos, creditos);
     }
 
-    @GetMapping("/modificarclase/{cId}")
-    public void modificarClase(int horas, Long cId, Long nuevoId, Long profesorId, List<Date> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Estudiante> estudiantes ){
+    @GetMapping("/modificarclase")
+    public void modificarClase(@RequestParam int horas, @RequestParam Long cId,@RequestParam Long nuevoId,@RequestParam Long profesorId, @RequestParam List<Date> horario,@RequestParam String salon,@RequestParam int cupoMaximo, @RequestParam int cupoActual, @RequestParam String semestre,@RequestParam Long AsignaturaId, @RequestParam List<Estudiante> estudiantes ){
         directorCarreraService.modificarClase(horas, cId, nuevoId, profesorId, horario, salon, cupoMaximo, cupoActual, semestre, AsignaturaId, estudiantes);
     }
 
-    @GetMapping("/eliminarclase/{cId}/")
-    public void eliminarClase(@PathVariable Long cId){
+    @GetMapping("/eliminarclase")
+    public void eliminarClase(@RequestParam Long cId){
         directorCarreraService.eliminarClase(cId);
     }
 
-    @GetMapping("/eliminarasignatura/{aId}") //did es de departamento id
-    public void eliminarAsignatura(@PathVariable Long aId){
+    @GetMapping("/eliminarasignatura") //did es de departamento id si algo
+    public void eliminarAsignatura(@RequestParam Long aId){
         directorCarreraService.eliminarAsignatura(aId);
     }
 
