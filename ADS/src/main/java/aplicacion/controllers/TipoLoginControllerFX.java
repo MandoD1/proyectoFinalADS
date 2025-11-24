@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.springframework.stereotype.Component;
+import javafx.fxml.Initializable;
+
+@Component // <- Esto lo hace un bean de Spring
 public class TipoLoginControllerFX implements Initializable {
 
     @FXML private Button btnVolverLogin, btnLoginDdpto, btnLoginEstu, btnLoginDCarrera, btnregistro;
