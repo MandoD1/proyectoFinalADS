@@ -29,16 +29,17 @@ public class DirectorCarreraController extends ProfesorController<DirectorCarrer
     }
 
     @GetMapping("/crearClase")
-    public void crearClase(@RequestParam int horas, @RequestParam Long cId, @RequestParam Long profesorId, @RequestParam List<Date> horario,@RequestParam String salon,@RequestParam int cupoMaximo, @RequestParam String semestre,@RequestParam Long AsignaturaId){
+    public void crearClase(@RequestParam int horas, @RequestParam Long cId, @RequestParam Long profesorId, @RequestParam List<String> horario,@RequestParam String salon,@RequestParam int cupoMaximo, @RequestParam String semestre,@RequestParam Long AsignaturaId){
         directorCarreraService.crearClase( cId, profesorId,  horario,  horas,  salon,  cupoMaximo,  semestre,  AsignaturaId);
     }
+
     @GetMapping("/crearasignatura")
-    public Departamento crearAsignatura(@RequestParam Long semestreId, @RequestParam Long dId, @RequestParam String nombre, @RequestParam List<Clase> clases, @RequestParam List<Asignatura> Corequisitos, @RequestParam boolean requisitoIngles, @RequestParam List<Asignatura> Prerequisitos, @RequestParam int creditos){
-        return directorCarreraService.crearAsignatura(semestreId, nombre,  dId,  clases,  Corequisitos,  requisitoIngles,  Prerequisitos, creditos);
+    public Departamento crearAsignatura(@RequestParam Long semestreId, @RequestParam Long dId, @RequestParam String nombre, @RequestParam List<Long> Corequisitos, @RequestParam boolean requisitoIngles, @RequestParam List<Long> Prerequisitos, @RequestParam int creditos){
+        return directorCarreraService.crearAsignatura(semestreId, nombre,  dId,  Corequisitos,  requisitoIngles,  Prerequisitos, creditos);
     }
 
     @GetMapping("/modificarclase")
-    public void modificarClase(@RequestParam int horas, @RequestParam Long cId,@RequestParam Long nuevoId,@RequestParam Long profesorId, @RequestParam List<Date> horario,@RequestParam String salon,@RequestParam int cupoMaximo, @RequestParam int cupoActual, @RequestParam String semestre,@RequestParam Long AsignaturaId, @RequestParam List<Estudiante> estudiantes ){
+    public void modificarClase(@RequestParam int horas, @RequestParam Long cId,@RequestParam Long nuevoId,@RequestParam Long profesorId, @RequestParam List<String> horario,@RequestParam String salon,@RequestParam int cupoMaximo, @RequestParam int cupoActual, @RequestParam String semestre,@RequestParam Long AsignaturaId, @RequestParam List<Long> estudiantes ){
         directorCarreraService.modificarClase(horas, cId, nuevoId, profesorId, horario, salon, cupoMaximo, cupoActual, semestre, AsignaturaId, estudiantes);
     }
 

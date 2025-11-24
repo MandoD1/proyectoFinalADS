@@ -5,6 +5,8 @@ import aplicacion.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,11 +66,23 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
         return fechaMas3Meses.before(fechaActual);
     }
 
-    public Departamento crearAsignatura(Long SemestreId, String nombre, Long departamentoId, List<Clase> clases, List<Asignatura> Corequisitos, boolean requisitoIngles, List<Asignatura> Prerequisitos, int creditos) {
+    public Departamento crearAsignatura(Long SemestreId, String nombre, Long departamentoId, List<Long> Corequisitos, boolean requisitoIngles, List<Long> Prerequisitos, int creditos) {
         Asignatura asignatura = new Asignatura();
         Semestre semestre = semestreRepository.findById(SemestreId);
         Departamento departamento = departamentoRepository.findById(departamentoId);
         Usuario usuario = usuarioRepository.loadUsuario();
+        List<Asignatura> correquisito = new ArrayList<>();
+        List<Asignatura> prerequisito = new ArrayList<>();
+
+        for (Long asignaturaidaux : Corequisitos) {
+            asignatura = asignaturaRepository.findById(asignaturaidaux);
+            correquisito.add(asignatura);
+        }
+
+        for (Long asignaturaidaux : Prerequisitos) {
+            asignatura = asignaturaRepository.findById(asignaturaidaux);
+            prerequisito.add(asignatura);
+        }
 
         if (departamento == null) {
             throw  new RuntimeException("Departamento no existe");
@@ -85,10 +99,9 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
                     if(departamento1 == departamento){
                         asignatura.setNombre(nombre);
                         asignatura.setDepartamento(departamento);
-                        asignatura.setCorequisitos(Corequisitos);
+                        asignatura.setCorequisitos(correquisito);
                         asignatura.setRequisitoingles(requisitoIngles);
-                        asignatura.setPrerequisitos(Prerequisitos);
-                        asignatura.setClases(clases);
+                        asignatura.setPrerequisitos(prerequisito);
                         asignatura.setCreditos(creditos);
                         departamento.addAsignaturas(asignatura);
                         asignaturaService.createAsignatura(asignatura);
@@ -100,26 +113,56 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
         return departamentoRepository.save(departamento);
     }
 
-    public void crearClase(Long id, Long idProfesor, List<Date> horario, int horas, String salon, int cupoMaximo, String semestre, Long idAsignatura) {
+    public void crearClase(Long id, Long idProfesor, List<String> horario, int horas, String salon, int cupoMaximo, String semestre, Long idAsignatura) {
+        List<Date> dates = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+        for (String fechas : horario) {
+            try {
+                dates.add(sdf.parse(fechas));
+            } catch (ParseException e) {
+                System.out.println("No se pudo parsear la fecha: " + fechas);
+            }
+        }
+
+
         Profesor profesor = findById(idProfesor);
         Asignatura asgnatura = asignaturaRepository.findById(idAsignatura);
         Clase clase = new Clase();
         clase.setId(id);
         clase.setProfesor(profesor);
-        clase.setHorario(horario);
+        clase.setHorario(dates);
         clase.setHoras(horas);
         clase.setSalon(salon);
         clase.setCupoMaximo(cupoMaximo);
         clase.setSemestre(semestre);
         clase.setCupoActual(0);
         clase.setAsignatura(asgnatura);
+        asgnatura.addClases(clase);
         claseService.createClase(clase);
 
     }
-    public void modificarClase(int horas, Long cid, Long nuevoId, Long profesorId, List<Date> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Estudiante> estudiantes ) {
+    public void modificarClase(int horas, Long cid, Long nuevoId, Long profesorId, List<String> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Long> estudiantes ) {
         Clase clase = new Clase();
         Clase claseOriginal = claseService.findClaseById(cid);
         boolean laClaseExiste = false;
+        List<Estudiante> estudiantes1 = new ArrayList<>();
+
+        for (Long estudiante : estudiantes) {
+            Estudiante estudiante1 = estudianteService.findEstudianteById(estudiante);
+            estudiantes1.add(estudiante1);
+        }
+
+        List<Date> dates = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+        for (String fechas : horario) {
+            try {
+                dates.add(sdf.parse(fechas));
+            } catch (ParseException e) {
+                System.out.println("No se pudo parsear la fecha: " + fechas);
+            }
+        }
 
         Profesor profesor = findById(profesorId);
         Asignatura asignatura = asignaturaRepository.findById(AsignaturaId);
@@ -151,8 +194,8 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
             clase.setCupoMaximo(cupoMaximo);
             clase.setCupoActual(cupoActual);
             clase.setSemestre(semestre);
-            clase.setHorario(horario);
-            clase.setEstudiantes(estudiantes);
+            clase.setHorario(dates);
+            clase.setEstudiantes(estudiantes1);
             clase.setHoras(horas);
             claseService.updateClase(cid, clase);
         }
