@@ -23,7 +23,7 @@ public class SpringJavafxIntegrationalApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tipologin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/nTipoLogin.fxml"));
         loader.setControllerFactory(context::getBean);
 
         Parent root = loader.load();

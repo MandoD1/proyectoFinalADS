@@ -58,7 +58,7 @@ public class LoginControllerFX implements Initializable {
             System.out.println("Login DIRECTOR DE DEPARTAMENTO exitoso.");
 
             // RUTA CORREGIDA: Se usa el nombre real del archivo FXML (menudirectordept.fxml)
-            String fxmlPath = "/menudirectordept.fxml";
+            String fxmlPath = "/menudirectorDPT.fxml";
             URL fxmlUrl = getClass().getResource(fxmlPath);
 
             if (fxmlUrl == null) {

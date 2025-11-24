@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicacion.controllers.ModificarCargaAcademicaControllerFX">
+   <top>
+      <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
+               <children>
+                  <Button fx:id="btnVolverMenuDCarrera" mnemonicParsing="false" onAction="#onActionVolverMenuDCarrera" prefHeight="42.0" prefWidth="88.0" text="Volver">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="49.0" prefWidth="198.0" text="Digite el id del profesor" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="idprofesormodificarCarga" onAction="#onActionidprofemodificarcarga" />
+            <Label prefHeight="49.0" prefWidth="198.0" text="id de la Clase" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="idclasemodificarprofe" onAction="#OnActionidclasemodificarprofe" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="49.0" prefWidth="198.0" text="Desea añadir una clase o retirar la clase" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <MenuButton mnemonicParsing="false" prefHeight="55.0" prefWidth="207.0">
+              <items>
+                <MenuItem fx:id="idañadirmodificarcargaprofe" mnemonicParsing="false" onAction="#OnActionañadirmodificarcargaprofe" text="Añadir" />
+                <MenuItem fx:id="idretirarmodificarcargaprofe" mnemonicParsing="false" onAction="#OnActionretirarmodificarcargaprofe" text="Action 2" />
+              </items>
+            </MenuButton>
+            <Button fx:id="btnModificarCargaprofe" mnemonicParsing="false" onAction="#OnActionModificarCargaprofe" style="-fx-background-color: #102464;" text="Modificar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children></VBox>
+   </center>
+</BorderPane>

@@ -52,8 +52,7 @@ public class EstudianteMenuControllerFX implements Initializable {
 
     @FXML
     public void onActionCrearHorario(ActionEvent event) throws IOException {
-        // ASUMO que el FXML para crear/matricular horario se llama "CrearHorario.fxml"
-        Parent root = FXMLLoader.load(getClass().getResource("/AgregarClase.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/CREARHORARIO.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
@@ -64,7 +63,6 @@ public class EstudianteMenuControllerFX implements Initializable {
      */
     @FXML
     public void onActionRetirarMaterias(ActionEvent event) throws IOException {
-        // RUTA: Asumo que el archivo se llama "RetirarMateria.fxml"
         Parent root = FXMLLoader.load(getClass().getResource("/RetirarMateria.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -76,7 +74,6 @@ public class EstudianteMenuControllerFX implements Initializable {
      */
     @FXML
     public void onActionConsultarAsignatura(ActionEvent event) throws IOException {
-        // RUTA: Asumo que el archivo se llama "ConsultarAsignatura.fxml"
         Parent root = FXMLLoader.load(getClass().getResource("/ConsultarAsignatura.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -88,7 +85,6 @@ public class EstudianteMenuControllerFX implements Initializable {
      */
     @FXML
     public void onActionDobleCarrera(ActionEvent event) throws IOException {
-        // RUTA: Usamos el archivo DobleCarrera.fxml que subiste
         Parent root = FXMLLoader.load(getClass().getResource("/DobleCarrera.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -100,8 +96,16 @@ public class EstudianteMenuControllerFX implements Initializable {
      */
     @FXML
     public void onActionConsultarHorario(ActionEvent event) throws IOException {
-        // RUTA: Asumo que el archivo se llama "ConsultarHorario.fxml"
         Parent root = FXMLLoader.load(getClass().getResource("/ConsultarHorario.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+
+    @FXML
+    public void onActionretirarcarrera(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/RETIRARCARRERA.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
