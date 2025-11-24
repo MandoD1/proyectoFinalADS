@@ -1,6 +1,9 @@
 [ {
-  "id" : 1,
-  "nombre" : "sistemas",
+  "id" : 2,
+  "nombre" : "Industrial",
+  "departamento" : null,
   "estudiantes" : [ ],
-  "profesores" : [ ]
+  "profesores" : [ ],
+  "codigo" : 2,
+  "asignaturasPensum" : [ ]
 } ]

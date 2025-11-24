@@ -2,8 +2,10 @@ package aplicacion.services;
 
 import aplicacion.model.Clase;
 import aplicacion.model.Asignatura;
+import aplicacion.model.Estudiante;
 import aplicacion.repository.ClaseRepository;
 import aplicacion.repository.AsignaturaRepository;
+import aplicacion.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -97,23 +99,31 @@ public class AsignaturaService {
         return asignaturaRepository.save(asignatura);
     }
 
-    public Asignatura assingAsignaturaNotaYEstado(Long asignaturaid, String estado, int calificacion){
+    public Asignatura assingAsignaturaNotaYEstado(Long asignaturaid, double calificacion){
         Asignatura asignatura = findAsignaturaById(asignaturaid);
+        int estado=0;
+        asignatura.setCalificacion(calificacion);
 
         if (asignatura == null)
             throw new IllegalArgumentException("asignatura no encontrada");
 
-        if(estado.equals("aprobada")){
-            asignatura.setCalificacion(calificacion);
-        }
+        if(asignatura.getCalificacion()<3.0){
+                estado=1;
+            }
 
-        if(estado.equals("reprobada")){
-            asignatura.setCalificacion(calificacion);
-        }
+        if(asignatura.getCalificacion()>3.0){
+                estado=2;
+            }
 
-        if(estado.equals("retirada")){
-            deleteAsignatura(asignaturaid);
-        }
+        if(!asignatura.getEstado().equals("CURSANDO") && asignatura.getCalificacion()==0.0){
+                estado=3;
+            }
+
+        switch (estado){
+                case 1: asignatura.setEstado(estadoClaseEnum.REPROBADA);
+                case 2: asignatura.setEstado(estadoClaseEnum.APROBADA);
+                case 3: asignatura.setEstado(estadoClaseEnum.NO_VISTA);
+            }
 
         return  asignaturaRepository.save(asignatura);
     }
