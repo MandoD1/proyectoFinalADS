@@ -11,9 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import com.gluonhq.charm.glisten.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,18 +21,21 @@ import java.util.ResourceBundle;
 
 public class CrearAsignaturaControllerFX implements Initializable {
 
+    // Campos de texto
     @FXML private TextField idasignaturacrear;
-    @FXML private TextField idcupomaxcrearasignatura; // si aplica
+    @FXML private TextField idcupomaxcrearasignatura;
     @FXML private TextField idsemestrecreasasignatura;
     @FXML private TextField iddeptcrearasignatura;
     @FXML private TextField idcrearasignaturacreditos;
     @FXML private TextField idasignaturacrearnombre;
 
+    // Botones
     @FXML private Button btnVolverMenuDCarrera;
-    @FXML private Button btnCrearAasigntura;
+    @FXML private Button btnCrearAsignatura;
 
     private final BackendClientDirectorCarrera backend = new BackendClientDirectorCarrera();
 
+    // Volver al menú del director de carrera
     @FXML
     public void onActionVolverMenuDCarrera(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menudirectorcarrera.fxml"));
@@ -42,6 +44,7 @@ public class CrearAsignaturaControllerFX implements Initializable {
         stage.show();
     }
 
+    // Crear asignatura
     @FXML
     public void OnActionCrearAsignatura(ActionEvent event) {
         try {
