@@ -40,7 +40,7 @@
    <right>
       <VBox alignment="CENTER" prefHeight="270.0" prefWidth="210.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnmodificarcargaprofe" mnemonicParsing="false" onAction="#onActionmodificarcargaprofes" style="-fx-background-color: #102464;" text="Modificar Carga de profesor" textFill="WHITE">
+            <Button fx:id="btnmodificarcargaprofe" mnemonicParsing="false" onAction="#onActionmodificarcargaprofe" style="-fx-background-color: #102464;" text="Modificar Carga de profesor" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

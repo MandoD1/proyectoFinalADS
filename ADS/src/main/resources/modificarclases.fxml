@@ -7,78 +7,85 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller= "aplicacion.controllers.ModificarClaseControllerFX">
-   <top>
-      <VBox prefHeight="115.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #102464;">
-               <children>
-                  <Button fx:id="btnVolverMenuDCarrera" mnemonicParsing="false" onAction="#onActionVolverMenuDCarrera" prefHeight="42.0" prefWidth="88.0" text="Volver">
-                     <font>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicacion.controllers.ModificarClaseControllerFX">
+    <top>
+        <VBox prefHeight="115.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #102464;">
+                    <children>
+                        <Button fx:id="btnVolverMenuDCarrera" mnemonicParsing="false" onAction="#onActionVolverMenuDCarrera" prefHeight="42.0" prefWidth="88.0" text="Volver">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="26.0" prefWidth="198.0" text="Digite el ID de la clase a modificar" wrapText="true">
+                    <font>
                         <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </top>
-   <left>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="26.0" prefWidth="198.0" text="Digite el id de la calse a modificar" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idclasemodificar" onAction="#onActionclasemodificar" />
-            <Label prefHeight="27.0" prefWidth="198.0" text="Digite el id del Nuevo id" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idprofesorCargaacademica1" onAction="#onActionidcargaprofe" />
-            <Label prefHeight="21.0" prefWidth="198.0" text="Id del profesor " wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idprofesormodificarclase" onAction="#onActionidprofemodificarclase" />
-            <Label prefHeight="28.0" prefWidth="198.0" text="Horario de la clase" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idmodificarclasehorario" onAction="#OnActionmodificarclasehorario" />
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="25.0" prefWidth="198.0" text="Cupo Actual" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="modificarclasecupo" onAction="#OnActionmodificarclasecupo" />
-            <Label prefHeight="25.0" prefWidth="198.0" text="Cupo Maximo" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="modificarclasecupomax" onAction="#OnActionmodificarclasecupomax" />
-            <Label prefHeight="28.0" prefWidth="198.0" text="Id asignatura" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idmodificarclaseidasignatura" onAction="#OnActionmodificarclaseidasignatura" />
-            <Button fx:id="btnModificarClasedpt" mnemonicParsing="false" onAction="#OnActionModificarClasedpt" style="-fx-background-color: #102464;" text="Modificar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children></VBox>
-   </center>
+                    </font>
+                </Label>
+                <TextField fx:id="idclasemodificar" />
+
+                <Label prefHeight="27.0" prefWidth="198.0" text="Nuevo ID profesor" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idprofesorCargaacademica1" />
+
+                <Label prefHeight="21.0" prefWidth="198.0" text="ID Profesor actual" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idprofesormodificarclase" />
+
+                <Label prefHeight="28.0" prefWidth="198.0" text="Horario de la clase" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idmodificarclasehorario" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="25.0" prefWidth="198.0" text="Cupo Actual" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="modificarclasecupo" />
+
+                <Label prefHeight="25.0" prefWidth="198.0" text="Cupo Máximo" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="modificarclasecupomax" />
+
+                <Label prefHeight="28.0" prefWidth="198.0" text="ID Asignatura" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idmodificarclaseidasignatura" />
+
+                <Button fx:id="btnModificarClasedpt" mnemonicParsing="false" onAction="#OnActionModificarClasedpt" style="-fx-background-color: #102464;" text="Modificar" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </center>
 </BorderPane>
