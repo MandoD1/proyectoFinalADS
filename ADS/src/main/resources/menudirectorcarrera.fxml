@@ -5,53 +5,63 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DirectorCarreraMenuControllerFX">
-    <top>
-        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #ca2c78;" BorderPane.alignment="CENTER">
-            <children>
-                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #9c1656;">
-                    <children>
-                        <Button fx:id="btnVolverLogin" mnemonicParsing="false" onAction="#onActionVolverLogin" prefHeight="42.0" prefWidth="88.0" text="Volver">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </VBox>
-            </children>
-        </VBox>
-    </top>
-    <left>
-        <VBox alignment="CENTER" prefHeight="270.0" prefWidth="153.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="btncrearasignaturas" mnemonicParsing="false" onAction="#onActioncrearasignaturas" style="-fx-background-color: #9c1656;" text="Crear asignaturas" textFill="WHITE">
-                    <font>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicacion.controllers.MenuDirectorCarreraControllerFX">
+   <top>
+      <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
+               <children>
+                  <Button fx:id="btnVolverLogin" mnemonicParsing="false" onAction="#onActionVolverLogin" prefHeight="42.0" prefWidth="88.0" text="Volver">
+                     <font>
                         <Font name="System Bold" size="12.0" />
-                    </font>
-                </Button>
-            </children>
-        </VBox>
-    </left>
-    <right>
-        <VBox alignment="CENTER" prefHeight="270.0" prefWidth="210.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#onActionGenerarReporte" prefHeight="53.0" prefWidth="177.0" style="-fx-background-color: #9c1656;" text="Genenerar reporte de estudiantes de una materia" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Button>
-            </children>
-        </VBox>
-    </right>
-    <center>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="btncrearclases" mnemonicParsing="false" onAction="#onActioncrearclases" style="-fx-background-color: #9c1656;" text="Crear clases" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Button>
-            </children>
-        </VBox>
-    </center>
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <VBox alignment="CENTER" prefHeight="270.0" prefWidth="153.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btncrearasignaturas" mnemonicParsing="false" onAction="#onActioncrearasignaturas" style="-fx-background-color: #102464;" text="Crear asignaturas" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnireliminarasignaturas" mnemonicParsing="false" onAction="#onActionireliminarasignaturas" style="-fx-background-color: #102464;" text="Eliminar asignaturas" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox alignment="CENTER" prefHeight="270.0" prefWidth="210.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnmodificarcargaprofe" mnemonicParsing="false" onAction="#onActionmodificarcargaprofes" style="-fx-background-color: #102464;" text="Modificar Carga de profesor" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btncrearclases" mnemonicParsing="false" onAction="#onActioncrearclases" style="-fx-background-color: #102464;" text="Crear clases" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnireliminarclases" mnemonicParsing="false" onAction="#onActionireliminarclases" style="-fx-background-color: #102464;" text="Eliminar clases" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

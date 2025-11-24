@@ -300,7 +300,16 @@ public class DirectorCarreraService extends ProfesorService<DirectorCarrera> {
         }
     }
 
-
+    public void modificarCargaProfesor(Long id, Clase clase, Boolean bandera) {
+        Profesor profesor = consultarProfesor(id);
+        if (bandera) {
+            profesor.addClases(clase);
+        } else if (!bandera) {
+            profesor.removeClases(clase);
+        } else {
+            throw new RuntimeException("No se puede modificar el profesor");
+        }
+    }
 
 
 }

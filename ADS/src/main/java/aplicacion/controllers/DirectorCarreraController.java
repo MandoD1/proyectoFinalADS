@@ -43,6 +43,12 @@ public class DirectorCarreraController extends ProfesorController<DirectorCarrer
         return directorCarreraService.crearAsignatura(semestreId, nombre,  dId,  Corequisitos,  requisitoIngles,  Prerequisitos, creditos);
     }
 
+    @GetMapping("/modificarcarga")
+    public void modificarCarga(@RequestParam Long pId, @RequestParam Long cId,  @RequestParam boolean accion ){
+        Clase clase = claseService.findClaseById(cId);
+        directorCarreraService.modificarCargaProfesor(pId, clase, accion);
+    }
+
 
     @GetMapping("/eliminarclase")
     public void eliminarClase(@RequestParam Long cId){

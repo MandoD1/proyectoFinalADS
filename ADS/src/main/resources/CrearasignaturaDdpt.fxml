@@ -9,9 +9,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CrearAsignaturaDeptControllerFX">
     <top>
-        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #ca2c78;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
             <children>
-                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #9c1656;">
+                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
                     <children>
                         <Button fx:id="btnVolverMenuDCarrera" mnemonicParsing="false" onAction="#onActionVolverMenuDCarrera" prefHeight="42.0" prefWidth="88.0" text="Volver">
                             <font>
@@ -56,7 +56,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="idasignaturacrearnombre" />
-                <Button fx:id="btnCrearAasigntura" mnemonicParsing="false" onAction="#OnActionCrearAsignatura" style="-fx-background-color: #ca2c78;" text="Crear Asignatura" textFill="WHITE">
+                <Button fx:id="btnCrearAasigntura" mnemonicParsing="false" onAction="#OnActionCrearAsignatura" style="-fx-background-color: #102464;" text="Crear Asignatura" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>

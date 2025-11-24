@@ -3,67 +3,47 @@
 <?import com.gluonhq.charm.glisten.control.AutoCompleteTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConsultarAsignaturaControllerFX">
-   <top>
-      <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #ca2c78;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #9c1656;">
-               <children>
-                  <Button fx:id="btnVolverEstudMenu" mnemonicParsing="false" onAction="#onActionVolverEstudMenu" prefHeight="42.0" prefWidth="88.0" text="Volver">
-                     <font>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicacion.controllers.ConsultarAsignaturaControllerFX">
+    <top>
+        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
+                    <children>
+                        <Button fx:id="btnVolverEstudMenu" mnemonicParsing="false" onAction="#onActionVolverEstudMenu" prefHeight="42.0" prefWidth="88.0" text="Volver">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="34.0" prefWidth="184.0" text="Id de clase a consultar:">
+                    <font>
                         <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </top>
-   <left>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="34.0" prefWidth="184.0" text="Seleccione la asignatura:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <MenuButton fx:id="idMenuProfes" mnemonicParsing="false" onAction="#onActionSeleccionarprofe" prefHeight="68.0" prefWidth="209.0">
-              <items>
-                <MenuItem fx:id="idTeologia" mnemonicParsing="false" onAction="#OnActionInfoTeologia" text="Teologia" />
-                  <MenuItem fx:id="idCalculo" mnemonicParsing="false" onAction="#OnActionInfoCalculo" text="Calculo" />
-              </items>
-            </MenuButton>
-         </children>
-      </VBox>
-   </left>
-   <right>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="34.0" prefWidth="294.0" text="Profesor:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <AutoCompleteTextField fx:id="idProfesorClase" prefWidth="314.0" />
-            <Label prefHeight="34.0" prefWidth="294.0" text="CupoMaximo:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <AutoCompleteTextField fx:id="idCupoMax" prefWidth="314.0" />
-            <Label fx:id="idClase" prefHeight="34.0" prefWidth="294.0" text="ID:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <AutoCompleteTextField fx:id="idCalculoNomina" prefWidth="314.0" />
-         </children>
-      </VBox>
-   </right>
+                    </font>
+                </Label>
+                <AutoCompleteTextField fx:id="idclaseaconsultar" prefWidth="314.0" />
+            </children>
+        </VBox>
+    </left>
+    <right>
+        <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnconsultarclase" mnemonicParsing="false" onAction="#onActionconsultarclase" prefHeight="42.0" prefWidth="88.0" text="Consultar">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </right>
 </BorderPane>

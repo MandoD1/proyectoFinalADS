@@ -9,20 +9,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.IOException;
-
 @SpringBootApplication
 public class SpringJavafxIntegrationalApplication extends Application {
 
-    public static ConfigurableApplicationContext applicationContext;
-    public static Parent rootNode;
-    public static Stage stage;
+    private static String[] savedArgs;
+    private ConfigurableApplicationContext context;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tipologin.fxml"));
-        Parent root = fxmlLoader.load();
+    public void init() {
+        context = SpringApplication.run(SpringJavafxIntegrationalApplication.class, savedArgs);
+    }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/nTipoLogin.fxml"));
+        loader.setControllerFactory(context::getBean);
+
+        Parent root = loader.load();
         Scene scene = new Scene(root);
 
         stage.setTitle("Sistema de Gestión Académica");
@@ -31,19 +35,13 @@ public class SpringJavafxIntegrationalApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
+    @Override
+    public void stop() {
+        context.close();
     }
 
+    public static void main(String[] args) {
+        savedArgs = args;
+        launch(args); // <-- JavaFX lanza la app
+    }
 }
-//package aplicacion;
-//
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//
-//@SpringBootApplication
-//public class SpringJavafxIntegrationalApplication {
-//    public static void main(String[] args) {
-//        SpringApplication.run(SpringJavafxIntegrationalApplication.class, args);
-//    }
-//}

@@ -35,10 +35,6 @@ public class DirectorDepartamentoController extends ProfesorController<DirectorD
         return directorDepartamentoService.calcularpago(pId, horasDictadas, minHoras, maxHoras);
     }
 
-    @GetMapping("/modificarcarga")
-    public void modificarCarga(@RequestParam Long pId, @RequestParam Long cId,  @RequestParam boolean accion ){
-        Clase clase = claseService.findClaseById(cId);
-        directorDepartamentoService.modificarCargaProfesor(pId, clase, accion);
-    }
+
 
 }

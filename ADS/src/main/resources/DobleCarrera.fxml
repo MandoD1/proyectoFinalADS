@@ -11,9 +11,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DobleCarreraControllerFX">
     <top>
-        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #ca2c78;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
             <children>
-                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #9c1656;">
+                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
                     <children>
                         <Button fx:id="btnVolverEstudMenu" mnemonicParsing="false" onAction="#onActionVolverEstudMenu" prefHeight="42.0" prefWidth="88.0" text="Volver">
                             <font>
@@ -52,7 +52,7 @@
                 </Label>
                 <RadioButton fx:id="idIngSistemas" mnemonicParsing="false" onAction="#onActionCarreraing" text="Ing. Sistemas" />
                 <RadioButton fx:id="idArtes" mnemonicParsing="false" onAction="#onActionCarreraArtes" text="Artes Visuales" />
-                <Button fx:id="btnInscribir" mnemonicParsing="false" onAction="#onActionInscribirCarrera" style="-fx-background-color: #9c1656;" text="Inscribir Carrera" />
+                <Button fx:id="btnInscribir" mnemonicParsing="false" onAction="#onActionInscribirCarrera" style="-fx-background-color: #102464;" text="Inscribir Carrera" textFill="WHITE"/>
             </children>
         </VBox>
     </right>

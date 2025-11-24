@@ -16,10 +16,6 @@ public class BackendClientDirectorCarrera{
     private final RestTemplate rest = new RestTemplate();
     private final String BASE = "http://localhost:8080/api/directorcarrera";
 
-    public void verProfesor(Long idProfesor) {
-        String url = BASE + "/verprofesor?pId=" + idProfesor;
-        rest.getForObject(url, Void.class);
-    }
 
     public void crearClase(int horas, Long cId, Long profesorId, List<String> horario, String salon, int cupoMaximo, String semestre, Long asignaturaId) {
         String url = UriComponentsBuilder.fromHttpUrl(BASE + "/crearClase").queryParam("horas", horas).queryParam("cId", cId).queryParam("profesorId", profesorId).queryParam("horario", horario).queryParam("salon", salon).queryParam("cupoMaximo", cupoMaximo).queryParam("semestre", semestre).queryParam("AsignaturaId", asignaturaId).toUriString();
@@ -46,6 +42,11 @@ public class BackendClientDirectorCarrera{
 
     public void eliminarAsignatura(Long idAsignatura) {
         String url = BASE + "/eliminarasignatura?aId=" + idAsignatura;
+        rest.getForObject(url, Void.class);
+    }
+
+    public void modificarCarga(Long pId, Long cId, boolean accion){
+        String url = UriComponentsBuilder.fromHttpUrl(BASE + "/modificarclase").queryParam("pId", pId).queryParam("cId", cId).queryParam("accion", accion).toUriString();
         rest.getForObject(url, Void.class);
     }
 

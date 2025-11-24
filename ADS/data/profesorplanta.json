@@ -1,1 +1,8 @@
-[]
+[ {
+  "nombre" : "sistemas",
+  "email" : "juancamilogod@doctorado.com",
+  "departamento" : null,
+  "pago" : 8566000,
+  "id" : 1,
+  "horasDeClase" : 20
+} ]
