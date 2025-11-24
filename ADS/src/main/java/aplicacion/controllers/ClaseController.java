@@ -40,7 +40,7 @@ public class ClaseController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){ //marlon
         claseService.deleteClass(id);
         return ResponseEntity.noContent().build();
     }

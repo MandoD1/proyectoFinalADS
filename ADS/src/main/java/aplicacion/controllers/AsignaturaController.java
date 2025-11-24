@@ -67,10 +67,9 @@ public class AsignaturaController {
     }
 
     @PostMapping("/Asignaturanota")
-    public Asignatura assingAsignaturaNotaYEstado(
+    public Asignatura assingAsignaturaNotaYEstado( //esta la metio marlon
             @RequestParam Long aId,
-            @RequestParam int calificacion,
-            @RequestParam String estado){
+            @RequestParam double calificacion){
         return asignaturaService.assingAsignaturaNotaYEstado(aId, calificacion);
     }
 

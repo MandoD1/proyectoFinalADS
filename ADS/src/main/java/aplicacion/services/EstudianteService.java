@@ -106,5 +106,17 @@ public class EstudianteService {
         return clase.cupo();
     }
 
+    public Estudiante assignCarreraToEstudiante(Long estudianteId, Long carreraId){
+        Estudiante estudiante = findEstudianteById(estudianteId);
+        Carrera carrera = carreraRepository.findById(carreraId);
+
+        if (carrera == null)
+            throw new IllegalArgumentException("Carrera no encontrada");
+
+        estudiante.addCarrera(carrera);
+        return estudianteRepository.save(estudiante);
+
+    }
+
 
 }

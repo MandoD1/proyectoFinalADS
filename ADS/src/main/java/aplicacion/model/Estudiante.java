@@ -14,7 +14,6 @@ public class Estudiante {
     private Long id;
     private String nombre;
     private String email;
-    private String carrera;
     private boolean examenIngles;
 
     private List<Carrera> carreras= new ArrayList<>();
@@ -69,14 +68,6 @@ public class Estudiante {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
     }
 
     public boolean isExamenIngles() {

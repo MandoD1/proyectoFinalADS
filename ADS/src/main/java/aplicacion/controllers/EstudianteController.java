@@ -1,7 +1,10 @@
 package aplicacion.controllers;
 
+import aplicacion.model.Asignatura;
 import aplicacion.model.Clase;
 import aplicacion.model.Estudiante;
+import aplicacion.services.AsignaturaService;
+import aplicacion.services.ClaseService;
 import aplicacion.services.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -65,4 +68,18 @@ public class EstudianteController {
             @RequestParam Long eId){
         return estudianteService.SeeClasesOfEstudiante(eId);
     }
+    @PostMapping("/retirarcarrera")
+    public Estudiante retirarCarrera(
+            @RequestParam Long eId,
+            @RequestParam Long cId){
+        return estudianteService.retirarCarrearOfEstudiante(eId, cId);
+    }
+
+    @PostMapping("/asingcarrera")
+    public Estudiante assingCarrera(
+            @RequestParam Long aId,
+            @RequestParam Long carreraId){
+        return estudianteService.assignCarreraToEstudiante(aId, carreraId);
+    }
+
 }
