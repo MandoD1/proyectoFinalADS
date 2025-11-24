@@ -10,10 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,77 +22,81 @@ import java.util.ResourceBundle;
 
 public class LoginControllerFX implements Initializable {
 
-    @FXML private TextField idUsuario;
-    @FXML private PasswordField idContraseña;
-    @FXML private ImageView imgDirectorDpto;
+    // ************************************************
+    // Variables inyectadas (fx:id)
+    // ************************************************
+    @FXML private TextField txtCorreo;
+    @FXML private PasswordField txtContraseña;
+    @FXML private Button btnLogin;
+    @FXML private Button btnVolver;
 
-    private final BackendClientUsuario backend = new BackendClientUsuario();
+    private final BackendClientUsuario backendClientUsuario = new BackendClientUsuario();
 
+    // ************************************************
+    // Método de inicialización
+    // ************************************************
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Controlador Login inicializado.");
+    }
+
+    // ************************************************
+    // Acción para el login
+    // ************************************************
     @FXML
-    public void onActionLogin(ActionEvent event) throws IOException {
-        String correo = idUsuario.getText().trim();
-        String contrasena = idContraseña.getText().trim();
+    public void onActionLogin(ActionEvent event) {
+        String correo = txtCorreo.getText().trim();
+        String contraseña = txtContraseña.getText().trim();
 
-        if(correo.isEmpty() || contrasena.isEmpty()) {
-            mostrarAlerta("Error de Login", "Debe ingresar usuario y contraseña.", Alert.AlertType.ERROR);
+        if (correo.isEmpty() || contraseña.isEmpty()) {
+            mostrarAlerta("Error", "Por favor ingrese correo y contraseña.", AlertType.ERROR);
             return;
         }
 
-        try {
-            Usuario usuario = backend.login(correo, contrasena);
+        // Llamada al cliente Backend para autenticar usuario
+        Usuario usuario = backendClientUsuario.login(correo, contraseña);
 
-            if(usuario == null) {
-                mostrarAlerta("Error de Login", "Usuario o contraseña incorrectos.", Alert.AlertType.ERROR);
-                return;
+        if (usuario != null) {
+            // Si el login es exitoso, redirigimos a la siguiente pantalla (por ejemplo, menú principal)
+            mostrarAlerta("Éxito", "Login exitoso", AlertType.INFORMATION);
+
+            // Navegamos a la siguiente escena, por ejemplo, el menú principal del estudiante o administrador
+            try {
+                // Cargamos la siguiente pantalla (ejemplo: menú del estudiante)
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MenuEstudiante.fxml"));
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                mostrarAlerta("Error", "No se pudo cargar la siguiente escena: " + e.getMessage(), AlertType.ERROR);
             }
 
-            // Redirigir según el tipo de usuario
-            String fxmlPath;
-            switch (usuario.getTipoUsuario()) {
-                case "DirectorDepartamento":
-                    fxmlPath = "/menudirectorDPT.fxml";
-                    break;
-                case "Estudiante":
-                    fxmlPath = "/estudiantemenu.fxml";
-                    break;
-                case "DirectorCarrera":
-                    fxmlPath = "/menudirectorcarrera.fxml";
-                    break;
-                default:
-                    mostrarAlerta("Error de Login", "Tipo de usuario desconocido.", Alert.AlertType.ERROR);
-                    return;
-            }
-
-            cambiarEscena(event, fxmlPath);
-
-        } catch (Exception e) {
-            mostrarAlerta("Error de Conexión", "No se pudo conectar con el servidor backend.\n" + e.getMessage(), Alert.AlertType.ERROR);
+        } else {
+            // Si no se pudo autenticar el usuario
+            mostrarAlerta("Error", "Usuario o contraseña incorrectos.", AlertType.ERROR);
         }
     }
 
-    private void cambiarEscena(ActionEvent event, String fxmlPath) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+    // ************************************************
+    // Acción para volver (si es necesario)
+    // ************************************************
+    @FXML
+    public void onActionVolver(ActionEvent event) throws IOException {
+        // Volver a la pantalla anterior (por ejemplo, al inicio o pantalla principal)
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Inicio.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+    // ************************************************
+    // Método para mostrar alertas
+    // ************************************************
+    private void mostrarAlerta(String titulo, String mensaje, AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Controlador Login inicializado.");
-        try {
-            Image loginImage = new Image(getClass().getResourceAsStream("/img/Login.png"));
-            if(imgDirectorDpto != null) imgDirectorDpto.setImage(loginImage);
-        } catch (Exception e) {
-            System.err.println("Error al cargar la imagen login.png: " + e.getMessage());
-        }
     }
 }
