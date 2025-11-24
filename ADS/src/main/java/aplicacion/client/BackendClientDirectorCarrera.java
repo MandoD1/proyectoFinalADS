@@ -32,9 +32,12 @@ public class BackendClientDirectorCarrera{
     }
 
     public void modificarClase(int horas, Long cId, Long nuevoId, Long profesorId, List<String> horario, String salon, int cupoMaximo, int cupoActual, String semestre, Long AsignaturaId, List<Long> estudiantes) {
-        String url = UriComponentsBuilder.fromHttpUrl(BASE + "/modificarclase").queryParam("horas", horas).queryParam("cId", cId).queryParam("nuevoId", nuevoId).queryParam("profesorId", profesorId).queryParam("horario", horario).queryParam("salon", salon).queryParam("cupoMaximo", cupoMaximo).queryParam("cupoActual", cupoActual).queryParam("semestre", semestre).queryParam("AsignaturaId", AsignaturaId).queryParam("estudiantes", estudiantes) // lista de IDs.toUriString();
+
+        String url = UriComponentsBuilder.fromHttpUrl(BASE + "/modificarclase").queryParam("horas", horas).queryParam("cId", cId).queryParam("nuevoId", nuevoId).queryParam("profesorId", profesorId).queryParam("horario", horario).queryParam("salon", salon).queryParam("cupoMaximo", cupoMaximo).queryParam("cupoActual", cupoActual).queryParam("semestre", semestre).queryParam("AsignaturaId", AsignaturaId).queryParam("estudiantes", estudiantes).toUriString();
+
         rest.getForObject(url, Void.class);
     }
+
 
     public void eliminarClase(Long idClase) {
         String url = BASE + "/eliminarclase?cId=" + idClase;

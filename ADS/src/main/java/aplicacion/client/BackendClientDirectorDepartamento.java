@@ -16,7 +16,7 @@ public class BackendClientDirectorDepartamento {
         rest.getForObject(BASE + "/verProfesores", Void.class);
     }
 
-    public double calcularPago(long id, int horas, int min, int max) {
+    public double calcularPago(Long id, int horas, int min, int max) {
         String url = BASE + "/calcularpago?pId=" + id + "&horasDictadas=" + horas + "&minHoras=" + min + "&maxHoras=" + max;
         return rest.getForObject(url, Double.class);
     }
