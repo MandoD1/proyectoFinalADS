@@ -4,10 +4,17 @@ import aplicacion.client.BackendClientEstudiante;
 import aplicacion.repository.UsuarioRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,5 +65,14 @@ public class RetirarCarreraControllerFX implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void onActionVolverEstudMenu(ActionEvent event) throws IOException {
+        // Carga la vista del menú del estudiante
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menuestudiante.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

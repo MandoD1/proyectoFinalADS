@@ -92,4 +92,5 @@ public class MenuDirectorCarreraControllerFX implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Controlador MenuDirectorCarrera inicializado. Navegación lista.");
     }
+
 }

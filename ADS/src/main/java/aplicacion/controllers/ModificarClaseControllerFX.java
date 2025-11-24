@@ -96,4 +96,6 @@ public class ModificarClaseControllerFX implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Controlador ModificarClase inicializado.");
     }
+
+
 }

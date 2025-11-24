@@ -7,10 +7,16 @@ import aplicacion.repository.UsuarioRepository;
 import com.gluonhq.charm.glisten.control.AutoCompleteTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -120,4 +126,21 @@ public class ConsultarAsignaturaControllerFX implements Initializable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    @FXML
+    public void onActionVolverEstudMenu(ActionEvent actionEvent) throws IOException {
+        // Ruta del FXML al que quieres volver (ej. selección de login)
+        String fxmlPath = "/nTipoLogin.fxml";
+
+        // Cargar la vista
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+
+        // Obtener la ventana actual desde el evento
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }

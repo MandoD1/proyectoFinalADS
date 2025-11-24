@@ -4,16 +4,23 @@ import aplicacion.client.BackendClientEstudiante;
 import aplicacion.repository.UsuarioRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import com.gluonhq.charm.glisten.control.AutoCompleteTextField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AgregarClaseHorarioControllerFX implements Initializable {
 
-    @FXML private AutoCompleteTextField idclaseagregarahorario;
+    @FXML private TextField idclaseagregarahorario; // Cambiado a TextField estándar
     @FXML private Button btnVolverEstudMenu;
     @FXML private Button btnAgregarClase;
 
@@ -36,7 +43,6 @@ public class AgregarClaseHorarioControllerFX implements Initializable {
         }
 
         try {
-            // Llamada real al backend
             backend.asignarClase(Long.valueOf(idClase));
             mostrarAlerta("Éxito", "Clase añadida exitosamente al horario.", Alert.AlertType.INFORMATION);
             limpiarCampos();
@@ -55,5 +61,14 @@ public class AgregarClaseHorarioControllerFX implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void onActionVolverEstudMenu(ActionEvent event) throws IOException {
+        // Carga la vista del menú del estudiante
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menuestudiante.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

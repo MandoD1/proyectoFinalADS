@@ -8,44 +8,45 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicacion.controllers.RetirarCarreraControllerFX">
-   <top>
-      <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
-               <children>
-                  <Button fx:id="btnVolverEstudMenu" mnemonicParsing="false" onAction="#onActionVolverEstudMenu" prefHeight="42.0" prefWidth="88.0" text="Volver">
-                     <font>
+    <top>
+        <VBox prefHeight="129.0" prefWidth="600.0" style="-fx-background-color: #fcc801;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #102464;">
+                    <children>
+                        <Button fx:id="btnVolverEstudMenu" mnemonicParsing="false" onAction="#onActionVolverEstudMenu" prefHeight="42.0" prefWidth="88.0" text="Volver">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER" spacing="10.0">
+            <children>
+                <Label prefHeight="34.0" prefWidth="184.0" text="ID de Estudiante">
+                    <font>
                         <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </top>
-   <left>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="306.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="34.0" prefWidth="184.0" text="Id de estudiante">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idestudenntretitarcarrera" onAction="#OnActionstudentretirarcarrera" />
-            <Label prefHeight="34.0" prefWidth="184.0" text="Id de la carrera ">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="idcarreraretirarcarrera" onAction="#OnActionsidcarreraetirarcarrera" />
-         </children>
-      </VBox>
-   </left>
-   <right>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" spacing="6.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="idretirodecarrera" mnemonicParsing="false" onAction="#OnActionretiroCarrera" style="-fx-background-color: #102464;" text="Retirar Carrera" textFill="WHITE" />
-         </children>
-      </VBox>
-   </right>
+                    </font>
+                </Label>
+                <TextField fx:id="idEstudianteRetirarCarrera" />
+
+                <Label prefHeight="34.0" prefWidth="184.0" text="ID de la Carrera">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idCarreraRetirar" />
+            </children>
+        </VBox>
+    </left>
+    <right>
+        <VBox alignment="CENTER" prefHeight="258.0" prefWidth="303.0" spacing="6.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnRetirarCarrera" mnemonicParsing="false" onAction="#OnActionretiroCarrera" style="-fx-background-color: #102464;" text="Retirar Carrera" textFill="WHITE"/>
+            </children>
+        </VBox>
+    </right>
 </BorderPane>
