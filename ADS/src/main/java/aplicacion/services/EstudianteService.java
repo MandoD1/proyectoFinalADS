@@ -74,12 +74,14 @@ public class EstudianteService {
 
         clase.aumentarCupo();
         estudiante.addClase(clase);
+        clase.getAsignatura().setEstado(estadoClaseEnum.CURSANDO);
         return estudianteRepository.save(estudiante);
     }
 
     public Estudiante retirarClaseOfEstudiante(Long estudianteId, Long claseId){
         Estudiante estudiante = findEstudianteById(estudianteId);
         Clase clase = claseRepository.findById(claseId);
+        clase.getAsignatura().setEstado(estadoClaseEnum.RETIRADA);
         if (clase == null)
             throw new IllegalArgumentException("Clase no encontrada");
 
@@ -103,5 +105,6 @@ public class EstudianteService {
         Clase clase = claseRepository.findById(claseId);
         return clase.cupo();
     }
+
 
 }

@@ -54,7 +54,10 @@ public class ClaseService {
 
     public void deleteClass(Long id){
         findClaseById(id);
+        Clase clase=claseRepository.findById(id);
+        clase.getAsignatura().setEstado(estadoClaseEnum.RETIRADA);
         claseRepository.delete(id);
+
     }
 
     public Clase assignEstudianteToClass(Long estudianteId, Long claseId){

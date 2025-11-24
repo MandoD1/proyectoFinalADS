@@ -12,7 +12,8 @@ import java.util.List;
 public class Carrera {
     private Long id;
     private String nombre;
-
+    private Departamento departamento;
+    private double promedioCarrera;
     private List<Estudiante> estudiantes = new ArrayList<>();
     private List<Profesor> profesores = new ArrayList<>();
 
@@ -42,6 +43,10 @@ public class Carrera {
         this.estudiantes = estudiantes;
     }
 
+    public void retirarEstudiante(Estudiante estudiante){
+        this.estudiantes.remove(estudiante);
+    }
+
     public List<Profesor> getProfesores() {
         return profesores;
     }
@@ -49,6 +54,10 @@ public class Carrera {
     public void setProfesores(List<Profesor> profesores) {
         this.profesores = profesores;
     }
+
+    public Departamento getDepartamento() {return departamento;
+    }
+    public void setDepartamento(Departamento departamento) {this.departamento = departamento;}
 
     public String getNombre() {
         return nombre;

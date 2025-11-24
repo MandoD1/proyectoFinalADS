@@ -71,7 +71,7 @@ public class AsignaturaController {
             @RequestParam Long aId,
             @RequestParam int calificacion,
             @RequestParam String estado){
-        return asignaturaService.assingAsignaturaNotaYEstado(aId, estado, calificacion);
+        return asignaturaService.assingAsignaturaNotaYEstado(aId, calificacion);
     }
 
     @PostMapping("/removeprerequisito")

@@ -1,5 +1,7 @@
 package aplicacion.model;
 
+import aplicacion.services.AsignaturaService;
+import aplicacion.services.estadoClaseEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,8 +16,8 @@ public class Asignatura {
     private String nombre;
     private int creditos;
     private boolean requisitoingles;
-    private String estado;    //#enum aprobada, retirada, perdida, no vista
-    private int calificacion;
+    private estadoClaseEnum estado;    //#enum aprobada, retirada, perdida, no vista
+    private double calificacion;
 
     private List<Asignatura> prerequisitos = new ArrayList<>();
 
@@ -108,19 +110,19 @@ public class Asignatura {
         this.clases = clases;
     }
 
-    public String getEstado() {
+    public estadoClaseEnum getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(estadoClaseEnum estado) {
         this.estado = estado;
     }
 
-    public int getCalificacion() {
+    public double getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(int calificacion) {
+    public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
     }
 
